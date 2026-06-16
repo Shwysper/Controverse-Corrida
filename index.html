@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Corrida — Tradition ou torture barbare ?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Oswald:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&display=swap" rel="stylesheet">
+<style>
+
+  /* ──────────────────────────────────────────────────────────────────────
+     TOKENS — palette / typo
+     Concept : photographie de presse noir & blanc, le rouge est la seule
+     couleur qui "perce" l'image (cape, sang, tampon).
+  ────────────────────────────────────────────────────────────────────── */
+  :root{
+    --noir:        #0a0a0a;   /* noir encre */
+    --noir-2:      #141414;   /* panneaux légèrement plus clairs */
+    --blanc:       #f6f4ef;   /* blanc papier photo, légèrement chaud */
+    --gris:        #8c8c87;   /* gris moyen, demi-tons de pellicule */
+    --gris-fonce:  #3a3a38;
+    --rouge-sang:  #7c0f17;   /* sang séché — utilisé en surfaces */
+    --rouge-vif:   #c41421;   /* sang frais — accents, hover, tampon */
+    --ligne:       rgba(246,244,239,0.12);
+
+    --display: 'Abril Fatface', Georgia, serif;
+    --serif:   'Source Serif 4', Georgia, serif;
+    --utility: 'Oswald', sans-serif;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--noir);
+    color:var(--blanc);
+    font-family:var(--serif);
+    font-size:16px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* grain de pellicule subtil, en superposition fixe */
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    background-image:
+      radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 3px 3px;
+    pointer-events:none;
+    z-index:999;
+    opacity:.5;
+  }
+
+  a{ color:inherit; }
+
+  ::selection{ background:var(--rouge-vif); color:var(--blanc); }
+
+  /* ──────────────────────────────────────────────────────────────────────
+     MASTHEAD — façon affiche de cartel taurin
+  ────────────────────────────────────────────────────────────────────── */
+  header.masthead{
+    padding:64px 24px 40px;
+    text-align:center;
+    position:relative;
+    border-bottom:1px solid var(--ligne);
+  }
+
+  .eyebrow{
+    font-family:var(--utility);
+    font-size:11px;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--rouge-vif);
+    margin-bottom:18px;
+  }
+
+  .rule-double{
+    width:64px; height:3px; margin:0 auto 18px;
+    background:
+      linear-gradient(var(--blanc),var(--blanc)) top/100% 1px no-repeat,
+      linear-gradient(var(--blanc),var(--blanc)) bottom/100% 1px no-repeat;
+    opacity:.4;
+  }
+
+  h1.title{
+    font-family:var(--display);
+    font-size:clamp(40px, 9vw, 92px);
+    line-height:.95;
+    letter-spacing:.01em;
+    text-transform:uppercase;
+    color:var(--blanc);
+  }
+
+  h1.title em{
+    font-style:normal;
+    color:var(--rouge-vif);
+  }
+
+  .subtitle{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:clamp(15px, 2.4vw, 19px);
+    color:var(--gris);
+    max-width:560px;
+    margin:18px auto 0;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────
+     NAVIGATION — billets d'arène perforés
+  ────────────────────────────────────────────────────────────────────── */
+  nav.tabs{
+    display:flex;
+    justify-content:center;
+    gap:0;
+    flex-wrap:wrap;
+    max-width:980px;
+    margin:0 auto;
+    padding:0 16px;
+    transform:translateY(-1px);
+  }
+
+  .tab{
+    font-family:var(--utility);
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--gris);
+    background:var(--noir-2);
+    border:1px solid var(--ligne);
+    border-top:none;
+    padding:14px 20px 12px;
+    cursor:pointer;
+    position:relative;
+    transition:color .2s, background .2s;
+    white-space:nowrap;
+  }
+
+  .tab:hover{ color:var(--blanc); }
+
+  .tab:focus-visible{
+    outline:2px solid var(--rouge-vif);
+    outline-offset:-2px;
+  }
+
+  /* effet billet perforé entre les onglets */
+  .tab:not(:last-child)::after{
+    content:'';
+    position:absolute;
+    top:6px; right:0; bottom:6px;
+    border-right:1px dashed var(--gris-fonce);
+  }
+
+  .tab[aria-selected="true"]{
+    color:var(--blanc);
+    background:var(--rouge-sang);
+  }
+
+  /* tampon rouge sur l'onglet actif */
+  .tab[aria-selected="true"]::before{
+    content:'●';
+    color:var(--rouge-vif);
+    font-size:8px;
+    margin-right:6px;
+    vertical-align:middle;
+  }
+
+  /* ──────────────────────────────────────────────────────────────────────
+     CONTENU
+  ────────────────────────────────────────────────────────────────────── */
+  main{
+    max-width:760px;
+    margin:0 auto;
+    padding:64px 24px 120px;
+  }
+
+  .panel{ display:none; animation:fadeIn .35s ease; }
+  .panel.active{ display:block; }
+
+  @keyframes fadeIn{
+    from{ opacity:0; transform:translateY(6px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .panel-eyebrow{
+    font-family:var(--utility);
+    font-size:11px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--rouge-vif);
+    margin-bottom:14px;
+  }
+
+  .panel h2{
+    font-family:var(--display);
+    font-size:clamp(28px, 5vw, 44px);
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    line-height:1.05;
+    margin-bottom:28px;
+    color:var(--blanc);
+  }
+
+  .panel h3{
+    font-family:var(--utility);
+    font-size:16px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--blanc);
+    margin:36px 0 12px;
+    padding-bottom:8px;
+    border-bottom:1px solid var(--ligne);
+  }
+
+  .panel p{
+    color:#d8d6cf;
+    margin-bottom:18px;
+    font-size:16.5px;
+  }
+
+  .panel p.lead{
+    font-size:19px;
+    color:var(--blanc);
+  }
+
+  .panel ul{
+    margin:0 0 20px 0;
+    padding-left:0;
+    list-style:none;
+  }
+
+  .panel li{
+    color:#d8d6cf;
+    padding:10px 0 10px 22px;
+    border-bottom:1px solid var(--ligne);
+    position:relative;
+    font-size:16px;
+  }
+
+  .panel li::before{
+    content:'—';
+    position:absolute;
+    left:0;
+    color:var(--rouge-vif);
+  }
+
+  blockquote{
+    border-left:3px solid var(--rouge-vif);
+    padding:4px 0 4px 22px;
+    margin:28px 0;
+    font-style:italic;
+    color:var(--blanc);
+    font-size:18px;
+  }
+
+  /* boîte placeholder — repère visuel temporaire pour le contenu à venir */
+  .placeholder{
+    border:1px dashed var(--gris-fonce);
+    background:rgba(255,255,255,.02);
+    padding:18px 20px;
+    margin:18px 0 28px;
+    font-family:var(--utility);
+    font-size:12.5px;
+    letter-spacing:.03em;
+    color:var(--gris);
+    text-transform:none;
+  }
+  .placeholder strong{ color:var(--rouge-vif); }
+
+  /* deux colonnes pour/contre côte à côte sur l'accueil */
+  .versus{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--ligne);
+    margin:36px 0;
+    border:1px solid var(--ligne);
+  }
+
+  .versus-col{
+    background:var(--noir);
+    padding:24px;
+  }
+
+  .versus-col h4{
+    font-family:var(--utility);
+    font-size:13px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+
+  .versus-col.pour h4{ color:var(--blanc); }
+  .versus-col.contre h4{ color:var(--rouge-vif); }
+
+  .versus-col p{ font-size:14.5px; color:var(--gris); margin-bottom:0; }
+
+  @media (max-width:560px){
+    .versus{ grid-template-columns:1fr; }
+  }
+
+  footer{
+    text-align:center;
+    padding:40px 24px 60px;
+    border-top:1px solid var(--ligne);
+  }
+
+  footer p{
+    font-family:var(--utility);
+    font-size:11px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--gris-fonce);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+
+</style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="eyebrow">Controverse</div>
+    <h1 class="title">La <em>Corrida</em></h1>
+    <div class="rule-double"></div>
+    <p class="subtitle">Une tradition à conserver, ou une torture barbare ?</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Sections du site">
+    <button class="tab" role="tab" aria-selected="true"  data-tab="accueil">Accueil</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="histoire">Origines &amp; Histoire</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="pour">Pour</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="contre">Contre</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="legal">Cadre légal</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="sources">Sources</button>
+  </nav>
+
+  <main>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         ACCUEIL
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="panel active" id="accueil" role="tabpanel">
+      <div class="panel-eyebrow">Introduction</div>
+      <h2>Deux visages, une même arène</h2>
+
+      <p class="lead">Chaque été, dans plusieurs villes du sud de la France et d'Espagne, la corrida réunit des milliers de spectateurs — et déchaîne autant de passions que d'oppositions.</p>
+
+      <p>Pour les uns, un art ancestral chargé de rites, de musique et de symboles, indissociable de l'identité culturelle de certaines régions. Pour les autres, un spectacle où la mise à mort d'un animal est érigée en spectacle, incompatible avec les valeurs contemporaines de protection animale.</p>
+
+      <p>Ce site ne tranche pas le débat : il rassemble les arguments des deux camps, le cadre légal qui encadre la pratique en France, et les sources permettant d'approfondir la réflexion.</p>
+
+      <div class="versus">
+        <div class="versus-col pour">
+          <h4>Pour</h4>
+          <p>Tradition culturelle, ancrage régional, dimension artistique, poids économique local.</p>
+        </div>
+        <div class="versus-col contre">
+          <h4>Contre</h4>
+          <p>Souffrance animale, atteinte au bien-être animal, évolution des mentalités, image internationale.</p>
+        </div>
+      </div>
+
+      <div class="placeholder">
+        📝 <strong>À compléter :</strong> chiffres clés (nombre d'arènes actives en France, fréquentation annuelle, résultats de sondages d'opinion, etc.)
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         HISTOIRE
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="panel" id="histoire" role="tabpanel">
+      <div class="panel-eyebrow">Contexte</div>
+      <h2>Origines &amp; Histoire</h2>
+
+      <p class="lead">La tauromachie puise ses racines dans des pratiques antiques, avant de se structurer en spectacle codifié en Espagne, puis de s'implanter durablement dans le sud de la France.</p>
+
+      <h3>Des origines antiques aux corridas modernes</h3>
+      <div class="placeholder">
+        📝 <strong>À compléter :</strong> jeux tauromachiques antiques (Crète, Rome), évolution en Espagne (XVIIIe siècle, codification des règles), figures historiques (Pedro Romero, Francisco Goya).
+      </div>
+
+      <h3>L'implantation en France</h3>
+      <div class="placeholder">
+        📝 <strong>À compléter :</strong> arrivée de la corrida dans le sud de la France au XIXe siècle, villes historiques (Nîmes, Arles, Bayonne, Dax), notion de « tradition locale ininterrompue ».
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         POUR
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="panel" id="pour" role="tabpanel">
+      <div class="panel-eyebrow">Argumentaire</div>
+      <h2>Une tradition à préserver</h2>
+
+      <p class="lead">Les défenseurs de la corrida la présentent comme un patrimoine culturel vivant, porteur d'une identité régionale et d'une dimension artistique reconnue.</p>
+
+      <h3>Arguments avancés</h3>
+      <ul>
+        <li>Patrimoine culturel et identité régionale</li>
+        <li>Dimension artistique et esthétique de la tauromachie</li>
+        <li>Poids économique local (emplois, tourisme, élevage)</li>
+        <li>Reconnaissance juridique de la « tradition locale ininterrompue »</li>
+      </ul>
+
+      <blockquote>
+        [Citation d'une personnalité ou d'un aficionado à insérer]
+      </blockquote>
+
+      <div class="placeholder">
+        📝 <strong>À compléter :</strong> données économiques précises, témoignages, position des associations type Observatoire National des Cultures Taurines.
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         CONTRE
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="panel" id="contre" role="tabpanel">
+      <div class="panel-eyebrow">Argumentaire</div>
+      <h2>Une souffrance animale</h2>
+
+      <p class="lead">Les opposants à la corrida dénoncent une pratique infligeant une souffrance physique et psychologique injustifiable à l'animal, en contradiction avec l'évolution des sensibilités contemporaines.</p>
+
+      <h3>Arguments avancés</h3>
+      <ul>
+        <li>Souffrance physiologique documentée de l'animal</li>
+        <li>Incompatibilité avec les avancées scientifiques sur la sensibilité animale</li>
+        <li>Évolution de l'opinion publique et des mentalités</li>
+        <li>Précédents d'interdiction (Catalogne, 2010)</li>
+      </ul>
+
+      <blockquote>
+        [Citation d'une association ou d'un.e expert.e à insérer]
+      </blockquote>
+
+      <div class="placeholder">
+        📝 <strong>À compléter :</strong> données scientifiques sur le bien-être animal, position d'associations type CRAC ou L214, résultats de sondages.
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         CADRE LÉGAL
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="panel" id="legal" role="tabpanel">
+      <div class="panel-eyebrow">Droit</div>
+      <h2>Cadre légal</h2>
+
+      <p class="lead">En France, la corrida bénéficie d'une exception légale précise, limitée aux zones où elle est considérée comme une tradition locale ininterrompue.</p>
+
+      <h3>Le Code pénal et l'exception de tradition</h3>
+      <div class="placeholder">
+        📝 <strong>À compléter :</strong> article 521-1 du Code pénal, jurisprudence du Conseil constitutionnel (décision de 2012), liste des communes concernées.
+      </div>
+
+      <h3>Le débat législatif actuel</h3>
+      <div class="placeholder">
+        📝 <strong>À compléter :</strong> propositions de loi récentes pour une interdiction nationale, positions des partis politiques, situation dans d'autres pays européens.
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         SOURCES
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="panel" id="sources" role="tabpanel">
+      <div class="panel-eyebrow">Références</div>
+      <h2>Sources &amp; pour aller plus loin</h2>
+
+      <p class="lead">Liste des sources utilisées pour la rédaction de ce site, à compléter au fur et à mesure des recherches.</p>
+
+      <div class="placeholder">
+        📝 <strong>À compléter :</strong> articles de presse, rapports d'associations, textes de loi, ouvrages académiques, documentaires.
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Site réalisé dans un cadre pédagogique — Grand Oral</p>
+  </footer>
+
+<script>
+  const tabs   = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+
+  function activate(id, updateHash = true){
+    tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.tab === id ? 'true' : 'false'));
+    panels.forEach(p => p.classList.toggle('active', p.id === id));
+    if (updateHash) history.replaceState(null, '', '#' + id);
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => activate(tab.dataset.tab));
+  });
+
+  // ouverture directe via l'URL (#contre, #legal, ...)
+  const initial = window.location.hash.replace('#', '');
+  const validIds = Array.from(panels).map(p => p.id);
+  if (validIds.includes(initial)) {
+    activate(initial, false);
+  }
+</script>
+
+</body>
+</html>
