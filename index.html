@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>La Corrida — Tradition ou Torture ?</title>
+  <link rel="shortcut icon" href="Images/Logo site v3.png"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     /* ===================== RESET & BASE ===================== */
@@ -230,7 +231,14 @@
       font-style: italic; font-size: 1.05rem; color: var(--white);
       line-height: 1.6; margin-bottom: 1rem;
     }
-    .arg-quote::before { content: '"'; color: var(--red); font-size: 1.4rem; }
+    .arg-quotedeux {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 1.05rem; color: var(--white);
+      line-height: 1.6; margin-bottom: 1rem;
+    }
+    .arg-quote:before { content: '"'; color: var(--red); font-size: 1.4rem; }
+    .arg-quote::after { content: '"'; color: var(--red); font-size: 1.4rem; }
+    .arg-quotedeux::after { content: '"'; color: var(--red); font-size: 1.4rem; }
     .arg-meta {
       font-size: 0.8rem; color: var(--grey); letter-spacing: 0.05em;
     }
@@ -245,27 +253,23 @@
     /* ===================== TÉMOIGNAGES ===================== */
     #temoignages .testimonials-grid { display: grid; gap: 1.5rem; margin-top: 2.5rem; }
     .testimonial-card {
-      background: var(--card); border: 1px solid var(--border);
+      background: var(--card); border-left: 3px solid var(--red);
       padding: 2rem; border-radius: 2px;
     }
-    .testimonial-card textarea {
-      width: 100%; min-height: 120px; background: transparent;
-      border: none; outline: none; color: var(--white);
-      font-family: 'Playfair Display', serif;
-      font-style: italic; font-size: 1rem; line-height: 1.7; resize: vertical;
+    .testimonial-carddeux {
+      background: var(--card); border-left: 3px solid #2ECC71;
+      padding: 2rem; border-radius: 2px;
     }
-    .testimonial-card textarea::placeholder { color: var(--grey-mid); }
     .testimonial-author {
       margin-top: 1rem; font-size: 0.8rem; color: var(--grey); letter-spacing: 0.06em;
     }
-    .add-testimonial-btn {
-      margin-top: 1rem;
-      background: none; border: 1px solid var(--red); color: var(--red);
-      padding: 0.6rem 1.4rem; cursor: pointer; font-family: 'Inter', sans-serif;
-      font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
-      transition: all 0.2s;
+    .temoin {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 1.05rem; color: var(--white);
+      line-height: 1.6; margin-bottom: 1rem;
     }
-    .add-testimonial-btn:hover { background: var(--red); color: var(--white); }
+    .temoin::before { content: '"'; color: var(--red); font-size: 1.4rem; }
+    .temoin::after { content: '"'; color: var(--red); font-size: 1.4rem; }
 
     /* ===================== POINTS DE FRICTION ===================== */
     #friction .friction-grid { display: grid; gap: 1.5rem; margin-top: 2.5rem; }
@@ -289,11 +293,11 @@
 
     /* ===================== AFFICHE ===================== */
     #affiche {
-      max-width: 700px; text-align: center;
+      max-width: 900px; text-align: center;
     }
     .affiche-zone {
       background: var(--card); border: 2px dashed var(--border);
-      padding: 5rem 2rem; color: var(--grey-mid);
+      padding: 5rem 2rem; color: var(--grey-mid); 
     }
     .affiche-zone span { font-size: 3rem; display: block; margin-bottom: 1rem; }
 
@@ -369,7 +373,7 @@
     }
     .team-photo-zone {
       background: var(--card); border: 2px dashed var(--border);
-      padding: 5rem 2rem; text-align: center; color: var(--grey-mid); max-width: 600px;
+      padding: 5rem 2rem; text-align: center; color: var(--grey-mid); max-width: 6000px;
     }
     .team-photo-zone span { font-size: 3rem; display: block; margin-bottom: 1rem; }
     .team-names {
@@ -621,8 +625,12 @@
 
   <!-- Zone de texte définitions -->
   <div class="definitions-area">
-    <h3>📝 Zone de définitions — Saisir vos notes ici</h3>
-    <textarea placeholder="Écrivez ici vos définitions, notes ou annotations relatives à la chronologie..."></textarea>
+    <h3>📝 Zone de définitions</h3>
+    <p><u><b>Spécisme</b></u> : Ce teme est généralement défini comme le fait de considérer l'existence d'une hiérarchie</p>
+    <p>entre les humains et les animaux. Une hiérachie qui justifierait l'exploitation et le massacre de</p>
+    <p>milliards d'entre eux pour notre alimentation, notre confort et notre divertissement.</p>
+    <br>
+    <p><u><b>Tauromachie</b></u> : Art de combattre des taureaux dans une arène.</p>
   </div>
 </section>
 <div class="section-sep"></div>
@@ -662,9 +670,10 @@
 
   <!-- Graphiques placeholder -->
   <div class="charts-placeholder">
-    <span>📊</span>
-    <strong style="color:var(--grey); display:block;">Graphiques générés par Claude.ai</strong>
-    <p style="font-size:0.85rem; margin-top:0.5rem;">Insérer ici les graphiques (évolution du nombre de corridas, spectateurs, opinion française, répartition par pays, taureaux de combat)</p>
+    <img src="Images/1-.png" alt="graphiques du nombre de Corridas organisées en Espagne entre 2007 et 2023 et graphique du nombre de spectateurs aux arènes (millions, Espagne)" width = 900/>
+    
+    <img src="Images/2-.png" alt="Opinion publique sur la corrida (France, 2023) et répartition des corridas par pays" width = 900/>
+    <img src="Images/3-.png" alt="Evolution du cheptel de taureaux de combat en Espagne" width = 900/>
   </div>
 
   <div class="analysis-text">
@@ -680,18 +689,45 @@
 <section id="cartographies">
   <p class="section-label">04 — Géographie</p>
   <h2 class="section-title">Cartographies</h2>
-  <p class="map-intro">La carte ci-dessous représente la répartition géographique de la pratique de la Corrida à travers le monde. Elle permet de visualiser les zones où la tauromachie est légale, encadrée, interdite, ou en cours de débat législatif. Cette distribution géographique illustre les tensions entre tradition locale et évolution des normes internationales en matière de bien-être animal.</p>
+  <p class="map-intro">La cartographie ci-dessous représente la majorité des acteurs qui prennent part dans le débat autour de la Corrida. Cette cartographie permet de se rendre compte du rôle global de chaque acteur, ainsi que de son niveau d'engagement, pour le définir, les critères comme l'influence (international, national ou local) et leurs objectifs (changements de lois, changer l'opinion publique) ont été utilisés.</p>
 
   <div class="map-placeholder">
-    <span>🗺️</span>
-    <strong style="color:var(--grey);">Cartographie — Insérer l'image ici</strong>
-    <p style="font-size:0.82rem; margin-top:0.5rem;">Répartition mondiale de la pratique de la tauromachie</p>
+    <img src="Images/Cartographie.png" alt="La Cartographie des acteurs en faveur et contre la Corrida" width = 900/>
   </div>
 
   <div class="map-text-block">
     <p style="color:var(--grey); line-height:1.8;">
-      <strong style="color:var(--white); display:block; margin-bottom:0.5rem;">Analyse cartographique</strong>
-      La Corrida est principalement pratiquée en Espagne, Portugal, France (régions du Sud-Ouest), et en Amérique latine (Mexique, Colombie, Venezuela, Pérou, Équateur). L'Espagne reste le pays où elle est la plus ancrée culturellement et institutionnellement. En France, elle est autorisée dans les localités où existe une tradition locale ininterrompue — essentiellement dans les départements du Gard, de l'Hérault, des Landes, et des Pyrénées-Atlantiques. Le Portugal pratique une forme particulière où la mise à mort publique du taureau est interdite depuis 2023 (hors Açores). À l'inverse, de nombreux pays européens ne connaissent pas cette pratique et soutiennent son abolition à l'échelon européen.
+      <strong style="color:var(--white); display:block; margin-bottom:0.5rem;">I/Défense de la corrida</strong>
+      Tout d'abord, la défense au niveau institutionnel de la Tauromachie est séparée en 3 groupes : l'Observatoire National des Cultures Taurines (ONCT, France), l'Union des Villes Taurines de France (UVTF) et Fundacion Toro de Lidia (FTL, Espagne). Ces acteurs sont composés de profils tels que des experts juridiques, des élus locaux, et des fondations privées. Ils ont un engagement très important car ce sont eux qui ont les compétences juridiques et qui tiennent le rôle de porte-parole auprès de l'État 
+      (en France comme en Espagne). Sachant que l'ONCT a été créé en 2010 par décret, cela lui confère une légitimité étatique forte. L'UVTF, quant à elle, regroupe des villes emblématiques comme Nîmes, Bayonne ou Arles, ancrant ainsi la défense institutionnelle dans le Sud-Ouest français et illustrant le poids électoral local de la corrida. Enfin,  
+      la Fundación Toro de Lidia a joué un rôle clé dans l'inscription de la tauromachie au registre des Biens d'Intérêt Culturel en Espagne en 2013, qui représente la victoire concrète la plus significative de ce camp. 
+      Leur objectif principal est d'acquérir la reconnaissance de la Corrida comme patrimoine culturel immatériel. 
+      Ensuite, plusieurs acteurs qui défendent la Corrida ont un impact direct sur le système économique de la Corrida en prenant part sur ce marché. Par exemple, ANOET (Espagne) qui regroupe des organisateurs de spectacle taurins, ou bien l'association des éleveurs (France), participent respectivement à l'organisation de spectacle de Corrida et à l'élevage de taureaux de combat. On peut également citer l'École de Tauromachie de Nîmes, qui représente la dimension de transmission du savoir-faire. 
+      Ce qui contribue à faire fonctionner l'économie du marché de la tauromachie. 
+      Un exemple d'action importante serait leur gestion des élevages extensifs en Camargue ou Dehesa, qui sont présentés comme des modèles de biodiversité.
+    </p>
+  </div>
+
+  <div class="map-text-block">
+    <p style="color:var(--grey); line-height:1.8;">
+      <strong style="color:var(--white); display:block; margin-bottom:0.5rem;">II/ Abolition de la Corrida</strong>
+      De l'autre côté, les acteurs anti-corrida utilisent plusieurs stratégies pour gagner du terrain dans cette controverse. 
+      Concernant la communication à l'internationale, l'ONG PETA (Pour une Éthique concernant le Traitement des Animaux), qui compte plus de 9 millions de membres et constitue l'une des plus grandes ONG animalistes au monde, ou encore la Fondation Brigitte Bardot, particulièrement active en France et disposant d'une résonance nationale forte, s'adressent au grand public dans le but de gagner le débat dans l'opinion publique. Ils sont donc très présents du côté médiatique. 
+      Pour citer des exemples d'actions, ces acteurs organisent des campagnes d'affichage massives, lancent également des pétitions mondiales, et organisent des manifestations devant les arènes, notamment à Bayonne ou Nîmes lors des férias, constituant des actions directes très médiatisées. Ils s'appuient également sur les réseaux sociaux comme levier de mobilisation, notamment auprès des jeunes générations. 
+      Sur le plan politique, il existe des partis politiques comme PACMA (Espagne, traduit = Pour les Animaux, l'Environnement et la Justice sociale) et PAN (Portugal, traduit = Personne – Animaux - Nature) qui portent l'idée du respect de l'animal dans la législation espagnole et portugaise. Ils ont un impact qui s'agrandit grâce à leur électorat croissant dans les zones urbaines, PACMA ayant par exemple obtenu plus de 300 000 voix aux élections législatives espagnoles de 2019. 
+      Ils déposent des projets de lois comme : l'interdiction de l'accès aux mineurs au spectacle de tauromachie ; ou bien la suspension des finances publiques accordées à ces derniers. Le résultat législatif le plus récent et le plus significatif de ce camp reste l'interdiction de la corrida votée au Portugal en 2023, portée notamment par PAN, hors Açores.
+    </p>
+  </div>
+
+  <div class="map-text-block">
+    <p style="color:var(--grey); line-height:1.8;">
+      <strong style="color:var(--white); display:block; margin-bottom:0.5rem;">III/ Liens et collaborations entre les acteurs</strong>
+      En 2013, lorsque l'Espagne a adopté la loi 18/2013 déclarant la tauromachie "Patrimoine Culturel", la FTL a créé un précédent majeur que l'ONCT a immédiatement analysé pour le transposer au contexte français. Cette collaboration s'illustre par la création de l'International Council of Bullfighting, une structure miroir qui permet d'harmoniser les arguments : si un tribunal européen valide un aspect de la corrida en Espagne (comme la liberté d'accès à la culture), 
+      l'ONCT s'empresse d'utiliser cette jurisprudence pour influencer les parlementaires français. Ils fonctionnent comme un laboratoire d'idées où l'on forge des concepts tels que "l'écologie du taureau de combat" ou "le droit à la différence culturelle", créant ainsi un front uni face aux tentatives d'interdiction nationales. 
+      Le CAS International, installé aux Pays-Bas, joue un rôle à part : plutôt que de courir après les projecteurs, il fonctionne comme la "banque centrale" du mouvement anti-corrida. Ce financement est très important pour des organisations avec des budgets plus restreints, comme l'Alliance Anticorrida en France ou AnimaNaturalis en Espagne et au Mexique. 
+      Concrètement, le CAS soutient financièrement des enquêtes sur le terrain, l’achat d’espaces publicitaires ainsi que l’achat de matériel de campagne. Mais son apport va au-delà des fonds : il met aussi son expertise au service des associations locales, en les aidant à structurer leurs pétitions pour qu'elles soient conformes aux standards internationaux. Grâce à ce soutien, les petites associations locales peuvent se permettre de lancer des campagnes coordonnées dans plusieurs pays à la fois. 
+      La collaboration entre PETA et AnimaNaturalis est une réussite en termes de mise en avant de l’idéologie anti-corrida au grand public. PETA est connu pour sa création d’évènements qui ont pour but de choquer, par exemple avec des militants nus, couverts de faux sang (représentant la mort d’un taureau de combat lors d’une corrida). Mais réaliser ces idées de mise en scène, il faut des ressources humaines, c’est là qu’AnimaNaturalis vient gérer le recrutement local de volontaires. 
+      Cette collaboration permet de transformer l’image de tradition de la Corrida en une image qui répugne, dégoute et qui est donc rejetée par l’opinion publique.
     </p>
   </div>
 </section>
@@ -755,6 +791,14 @@
     <!-- Éthique -->
     <div class="arg-card">
       <span class="arg-type-badge">Éthique</span>
+      <div class="arg-quotedeux"><b>La définition de la tauromachie par l'UNESCO en 1980, donne ceci :</b><br>  
+                            <span style="color:red;">"</span>La tauromachie est l'art scélérat et vénal de torturer et de mettre à mort des animaux selon des règles, dans la légalité et en public. <br>Elle traumatise les enfants et les adultes sensibles. 
+                            Elle aggrave l'état des psychopathes attirés par ce genre de spectacles. Elle dénature la relation entre l'homme et l'animal. Ce type de spectacles est contre la morale, la science et la culture.</div>
+      <div class="arg-meta"><span class="arg-author">UNESCO</span> — 1980</div>
+    </div>
+
+    <div class="arg-card">
+      <span class="arg-type-badge">Éthique</span>
       <div class="arg-quote">La tradition s'arrête là où la cruauté commence. Torturer un animal pour le divertissement est une tache sur l'honneur de l'Europe du XXIe siècle.</div>
       <div class="arg-meta"><span class="arg-author">Marius Kolff</span> — CAS International</div>
     </div>
@@ -786,29 +830,38 @@
 <section id="temoignages">
   <p class="section-label">07 — Paroles</p>
   <h2 class="section-title">Témoignages</h2>
-  <p style="color:var(--grey); margin-bottom:2rem; font-size:0.95rem;">Collez ici vos témoignages recueillis.</p>
 
   <div class="testimonials-grid" id="testimonials-container">
     <div class="testimonial-card">
-      <textarea placeholder="Collez ou saisissez un témoignage ici..."></textarea>
+      <div class="temoin">Je vais te raconter mon ressenti. Je ne me place donc pas sur un plan moral, je ne défends pas une cause ou une autre, je vais simplement te raconter mes émotions et réflexions au cours de cette corrida. C'est horrible, j'en avais la nausée. En l'écrivant aujourd'hui, j'en ai encore la nausée. Le pire c'est cette façon de donner la mort : elle semble douloureuse, aléatoire, barbare. Je pensais sans arrêt : la mort est une chose trop sérieuse, trop grave pour la pratiquer de cette manière.</div>
       <div class="testimonial-author" style="display:flex; gap:1rem; align-items:center; margin-top:0.8rem;">
-        <input type="text" placeholder="Auteur / Source" style="background:transparent; border:none; border-bottom:1px solid var(--border); outline:none; color:var(--grey); font-size:0.8rem; width:200px; padding:0.2rem 0;" />
+        <div class="testimonial-author"> Spectateur anonyme (Contre la corrida)</div>
       </div>
     </div>
     <div class="testimonial-card">
-      <textarea placeholder="Collez ou saisissez un témoignage ici..."></textarea>
+      <div class="temoin">J'habite à Nîmes et j'ai assisté à une corrida, du moins au dernier taureau, quand j'avais 17 ans ; je voulais tout simplement me rendre compte par moi-même que ce qu'était réellement la corrida; je précise que n'ai eu aucun mal a rentré dans les arènes. J'étais seule. Je peux vous dire que très vite je n'ai pas compris pourquoi les gens se ruaient pour aller voir ça. Cela m'a avant tout inspiré beaucoup de pitié quand j'ai vu l'animal commençant à fléchir sur ces pattes, la gueule ouverte, 
+        je me souviens qu'il ne cessait de prendre appui sur les parois, et puis ce qui m'a choqué c'est le silence qui régnait autour de cette bête à bout de force et tous ces gens qui regardaient... je vous avouerais que je n'ai pas eu le courage d'attendre la fin, c'est à dire la mise à mort, ce spectacle était déjà bien pitoyable dans mes yeux de 17 ans; en tout cas j'ai le souvenir d'avoir vu rentrer dans l'arène un animal magnifique qui en l'espace de 10mn est devenu littéralement une loque pissant son sang. 
+        J'ai trouvé ce spectacle ignoble. Je n'ai pas compris pourquoi des gens prenaient plaisir à regarder ça et ne le comprend toujours pas d'ailleurs. 
+        Je pense que c'est un devoir qu'une loi soit votée pour interdire les enfants à ce genre de spectacle; tout simplement car un large public est mal informé, la preuve, dans les médias, on ne montre que l'aspect présentable avec couleurs, fanfares..., en l'occurrence les passes avec la cape; le reste est complètement mis de côté: les coups de piques puis surtout la mise à mort qui dépend seulement du savoir-faire du matador, si celui-ci est mauvais (ce qui ne manque pas à l'appel!) la fin du "spectacle" est un véritable carnage, 
+        coup d'épée (desbello) à répétition sans parlé des coups de poignard (puntilla) lacérant le cerveau de manière répétée également, de l'acharnement pur et simple, c'est l'horreur absolue. C'est pourquoi nous ne pouvons prendre le risque de laisser des enfants assister à ça.
+        Mon point de vue : la mise à mort d'un être que l'on donne en spectacle va à l'encontre du respect de la vie.</div>
       <div class="testimonial-author" style="display:flex; gap:1rem; align-items:center; margin-top:0.8rem;">
-        <input type="text" placeholder="Auteur / Source" style="background:transparent; border:none; border-bottom:1px solid var(--border); outline:none; color:var(--grey); font-size:0.8rem; width:200px; padding:0.2rem 0;" />
+        <div class="testimonial-author"> Spectateur anonyme (Contre la corrida)</div>
       </div>
     </div>
-    <div class="testimonial-card">
-      <textarea placeholder="Collez ou saisissez un témoignage ici..."></textarea>
+    <div class="testimonial-carddeux">
+      <div class="temoin">Moi, qui suis aficionado depuis toujours, ce débat m'exaspère. Je n'ai, à vrai dire, qu'un seul argument pour défendre la corrida et il me semble inattaquable : ça me plaît, c'est même le spectacle qui me plaît le plus.</div>
       <div class="testimonial-author" style="display:flex; gap:1rem; align-items:center; margin-top:0.8rem;">
-        <input type="text" placeholder="Auteur / Source" style="background:transparent; border:none; border-bottom:1px solid var(--border); outline:none; color:var(--grey); font-size:0.8rem; width:200px; padding:0.2rem 0;" />
+        <div class="testimonial-author">Spectateur anonyme (En faveur de la corrida)</div>
+      </div>
+    </div>
+    <div class="testimonial-carddeux">
+      <div class="temoin">Je témoigne que je n'ai jamais rencontré un seul torero ni un seul aficionado qui prenne du plaisir ou trouve le moindre intérêt au spectacle de la souffrance du toro. [...] Si on applaudit au moment de sa mort, c'est pour saluer son combat et le savoir-faire du torero.</div>
+      <div class="testimonial-author" style="display:flex; gap:1rem; align-items:center; margin-top:0.8rem;">
+        <div class="testimonial-author">Spectateur anonyme (En faveur de la corrida)</div>
       </div>
     </div>
   </div>
-  <button class="add-testimonial-btn" id="add-testimonial" style="margin-top:1.5rem;">+ Ajouter un témoignage</button>
 </section>
 <div class="section-sep"></div>
 
@@ -900,13 +953,11 @@
 <div class="section-sep"></div>
 
 <!-- ==================== AFFICHE ==================== -->
-<section id="affiche" style="max-width:700px;">
+<section id="affiche" style="max-width:1400px;">
   <p class="section-label">09 — Affiche</p>
   <h2 class="section-title">Notre Affiche</h2>
   <div class="affiche-zone">
-    <span>🖼️</span>
-    <strong style="color:var(--grey); display:block; margin-bottom:0.5rem;">Insérer l'image de votre affiche ici</strong>
-    <p style="font-size:0.8rem; color:var(--grey-mid);">Remplacez cette zone par une balise &lt;img src="votre-affiche.jpg"&gt;</p>
+    <img src="Images/Affiche.png" alt="Affiche de la controverse" width = 1200/>
   </div>
 </section>
 <div class="section-sep"></div>
@@ -920,24 +971,21 @@
   <div class="img-grid">
     <div class="img-item">
       <div class="img-placeholder">
-        <span>📷</span>
-        <span style="font-size:0.75rem;">Exécution du taureau</span>
+         <img src="Images/Execution.png" width = 330/>
       </div>
       <div class="img-caption">Exécution d'un taureau à la fin de la Corrida</div>
       <div class="img-src">Source : <a href="https://fr.wikipedia.org/wiki/Verdugo_%28estocade%29" target="_blank" style="color:var(--red); font-size:0.7rem;">wikipedia.org — Verdugo (estocade)</a></div>
     </div>
     <div class="img-item">
       <div class="img-placeholder">
-        <span>📷</span>
-        <span style="font-size:0.75rem;">Image d'un Picador</span>
+        <img src="Images/Picador.png" width = 330/>
       </div>
       <div class="img-caption">Image d'un Picador</div>
       <div class="img-src">Source : <a href="https://www.flickr.com/photos/bernardbost/44902378942" target="_blank" style="color:var(--red); font-size:0.7rem;">flickr.com — Bernard Bost</a></div>
     </div>
     <div class="img-item">
       <div class="img-placeholder">
-        <span>📷</span>
-        <span style="font-size:0.75rem;">Matador & taureau</span>
+        <img src="Images/Matador.png" width = 330/>
       </div>
       <div class="img-caption">Matador et taureau en pleine Corrida</div>
       <div class="img-src">Source : <a href="https://www.la-croix.com/France/chiffres-corrida-France-2022-11-16-1201242365" target="_blank" style="color:var(--red); font-size:0.7rem;">la-croix.com</a></div>
@@ -949,7 +997,7 @@
     <h3 style="font-size:1.4rem; color:var(--white); margin-bottom:2rem;">Glossaire de la Tauromachie</h3>
 
     <div class="glossary-category">
-      <div class="glossary-cat-title">Les Acteurs</div>
+      <div class="glossary-cat-title">Les protagonistes</div>
       <div class="glossary-grid">
         <div class="gloss-item"><div class="gloss-term">Matador</div><div class="gloss-def">Protagoniste principal, chargé d'abattre le taureau</div></div>
         <div class="gloss-item"><div class="gloss-term">Cuadrilla</div><div class="gloss-def">L'équipe chargée d'assister le Matador</div></div>
@@ -1051,14 +1099,13 @@
   <p class="section-label">12 — Équipe</p>
   <h2 class="section-title">Qui Sommes-Nous ?</h2>
   <p class="about-text">
-    <strong style="color:var(--white);">Biographie des Blue Suits :</strong><br><br>
-    Nous sommes les Blue Suits, 4 camarades de classe en E1. Nous venons tous de différents lycées et nous nous sommes rencontrés au cours de notre première année du cycle préparatoire à l'ESIEE Paris. Après s'être réparti le travail, avoir passé du temps sur la recherche, la mise en forme et la rédaction, nous sommes fiers de vous présenter notre dossier sur la controverse que nous avons choisie : <em>La Corrida, une tradition à conserver ou une torture barbare ?</em>
+    
+    <b>Nous sommes les </b><br> <img src="Images/Blue Suits v3.png" alt="Logo des Blue Suits" width = 300/> <br>
+    4 camarades de classe en E1. Nous venons tous de différents lycées et nous nous sommes rencontrés au cours de notre première année du cycle préparatoire à l'ESIEE Paris. Après s'être réparti le travail, avoir passé du temps sur la recherche, la mise en forme et la rédaction, nous sommes fiers de vous présenter notre dossier sur la controverse que nous avons choisie : <em>La Corrida, une tradition à conserver ou une torture barbare ?</em>
   </p>
 
   <div class="team-photo-zone">
-    <span>📸</span>
-    <strong style="color:var(--grey); display:block; margin-bottom:0.5rem;">Photo de groupe — à insérer</strong>
-    <p style="font-size:0.8rem; color:var(--grey-mid);">De gauche à droite : NOEL Lucas – ORGAER-REANT Aidann – PENG Sopanha – NGUYEN Melvin</p>
+    <img src="Images/Photo de groupe.png" alt="Photo des membres des Blue Suits" width = 900/>
   </div>
 
   <div class="team-names">
