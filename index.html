@@ -30,195 +30,231 @@
       line-height: 1.7;
       overflow-x: hidden;
     }
+    img { max-width: 100%; height: auto; display: block; }
     h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
 
     /* ===================== NAV ===================== */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(10,10,10,0.95);
+      background: rgba(10,10,10,0.97);
       border-bottom: 1px solid var(--red);
       backdrop-filter: blur(8px);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 2rem; height: 60px;
+      padding: 0 1.5rem; height: 60px;
     }
     .nav-brand {
       font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; font-weight: 700;
+      font-size: 1.05rem; font-weight: 700;
       color: var(--red); letter-spacing: 0.05em;
-      text-decoration: none;
+      text-decoration: none; flex-shrink: 0;
     }
+
+    /* Desktop nav links */
     .nav-links {
       display: flex; gap: 0; list-style: none;
-      overflow-x: auto; max-width: calc(100vw - 200px);
     }
     .nav-links a {
       color: var(--grey); text-decoration: none;
-      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em;
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 0 0.7rem; white-space: nowrap;
+      padding: 0 0.6rem; white-space: nowrap;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--red); }
+    .nav-links a:hover, .nav-links a.active { color: var(--red); }
+
+    /* Burger button — hidden on desktop */
+    .burger {
+      display: none;
+      flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px;
+    }
+    .burger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--white); border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,10,0.98);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 1.5rem; z-index: 999;
+      overflow-y: auto; padding: 2rem 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--grey); text-decoration: none;
+      font-size: 1.1rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.4rem 0;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--red); }
 
     /* ===================== HERO ===================== */
     #accueil {
-      min-height: 100vh; padding: 120px 2rem 80px;
+      min-height: 100vh;
+      padding: 100px 1.5rem 60px;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; position: relative; overflow: hidden;
     }
     .hero-bg-text {
       position: absolute; font-family: 'Playfair Display', serif;
-      font-size: clamp(120px, 22vw, 280px); font-weight: 900; font-style: italic;
+      font-size: clamp(80px, 18vw, 280px); font-weight: 900; font-style: italic;
       color: transparent; -webkit-text-stroke: 1px rgba(200,16,46,0.12);
       top: 50%; left: 50%; transform: translate(-50%, -50%);
       white-space: nowrap; pointer-events: none; user-select: none;
       letter-spacing: -0.02em;
     }
     .hero-eyebrow {
-      font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--red); margin-bottom: 1.5rem; font-weight: 600;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 1.2rem; font-weight: 600;
+      position: relative;
     }
     .hero-title {
-      font-size: clamp(2.5rem, 6vw, 5.5rem);
-      font-weight: 900; line-height: 1.05;
+      font-size: clamp(1.9rem, 5.5vw, 5.5rem);
+      font-weight: 900; line-height: 1.08;
       color: var(--white); max-width: 900px;
+      position: relative;
     }
     .hero-title em { color: var(--red); font-style: italic; }
     .hero-divider {
-      width: 60px; height: 2px; background: var(--red);
-      margin: 2rem auto;
+      width: 50px; height: 2px; background: var(--red);
+      margin: 1.8rem auto; position: relative;
     }
     .hero-intro {
-      max-width: 780px; color: var(--grey); font-size: 1.05rem; line-height: 1.8;
-      text-align: left;
+      max-width: 740px; color: var(--grey); font-size: 1rem; line-height: 1.8;
+      text-align: left; position: relative;
     }
     .hero-intro p { margin-bottom: 1.2rem; }
     .hero-intro p:last-child { margin-bottom: 0; }
 
     /* ===================== SECTIONS SHARED ===================== */
     section {
-      padding: 100px 2rem;
+      padding: 70px 1.5rem;
       max-width: 1100px; margin: 0 auto;
     }
     .section-label {
-      font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--red); font-weight: 600; margin-bottom: 1rem;
+      font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--red); font-weight: 600; margin-bottom: 0.8rem;
     }
     .section-title {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 900; color: var(--white); margin-bottom: 2.5rem;
+      font-size: clamp(1.7rem, 4vw, 3.2rem);
+      font-weight: 900; color: var(--white); margin-bottom: 2rem;
       line-height: 1.1;
     }
     .section-sep {
       width: 100%; height: 1px; background: var(--border);
-      margin: 0;
     }
 
     /* ===================== CHRONOLOGIE — VERTICAL ===================== */
     #chronologie { max-width: 900px; }
     .timeline {
-      position: relative; margin-top: 3rem;
-      padding-left: 80px;
+      position: relative; margin-top: 2.5rem;
+      padding-left: 60px;
     }
     .timeline::before {
       content: '';
-      position: absolute; left: 30px; top: 0; bottom: 0;
+      position: absolute; left: 22px; top: 0; bottom: 0;
       width: 2px; background: linear-gradient(to bottom, var(--red), var(--red-deep));
     }
     .tl-item {
-      position: relative; margin-bottom: 3.5rem;
+      position: relative; margin-bottom: 3rem;
     }
     .tl-item:last-child { margin-bottom: 0; }
     .tl-dot {
-      position: absolute; left: -58px; top: 4px;
-      width: 16px; height: 16px; border-radius: 50%;
+      position: absolute; left: -46px; top: 6px;
+      width: 14px; height: 14px; border-radius: 50%;
       background: var(--red); border: 3px solid var(--black);
       box-shadow: 0 0 0 2px var(--red);
     }
     .tl-icon {
-      position: absolute; left: -100px; top: -8px;
-      width: 48px; height: 48px;
+      position: absolute; left: -90px; top: -6px;
+      width: 40px; height: 40px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
     }
     .tl-year {
       font-family: 'Playfair Display', serif;
-      font-size: 1.6rem; font-weight: 900; color: var(--red);
-      line-height: 1; margin-bottom: 0.4rem;
+      font-size: 1.5rem; font-weight: 900; color: var(--red);
+      line-height: 1; margin-bottom: 0.3rem;
     }
     .tl-event {
-      font-weight: 600; color: var(--white); font-size: 0.95rem;
-      margin-bottom: 0.4rem;
+      font-weight: 600; color: var(--white); font-size: 0.93rem;
+      margin-bottom: 0.3rem;
     }
-    .tl-desc { color: var(--grey); font-size: 0.88rem; line-height: 1.6; }
+    .tl-desc { color: var(--grey); font-size: 0.85rem; line-height: 1.6; }
 
     /* Definitions area */
     .definitions-area {
-      margin-top: 4rem;
+      margin-top: 3rem;
       background: var(--card); border: 1px solid var(--border);
       border-left: 4px solid var(--red);
-      padding: 2rem;
+      padding: 1.5rem;
     }
     .definitions-area h3 {
-      font-size: 1.1rem; color: var(--red); margin-bottom: 1rem;
-      text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.8rem; font-weight: 600;
+      color: var(--red); margin-bottom: 1rem;
+      text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.78rem; font-weight: 600;
+      font-family: 'Inter', sans-serif;
     }
-    .definitions-area textarea {
-      width: 100%; min-height: 180px;
-      background: transparent; border: none; outline: none;
-      color: var(--white); font-family: 'Inter', sans-serif;
-      font-size: 0.95rem; line-height: 1.7; resize: vertical;
-    }
-    .definitions-area textarea::placeholder { color: var(--grey-mid); }
+    .definitions-area p { color: var(--grey); font-size: 0.92rem; line-height: 1.7; }
+    .definitions-area br { display: block; content: ''; margin: 0.2rem 0; }
 
     /* ===================== CHIFFRES CLÉS ===================== */
-    #chiffres .stats-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem; margin-bottom: 3.5rem;
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem; margin-bottom: 3rem;
     }
     .stat-card {
       background: var(--card); border: 1px solid var(--border);
       border-top: 3px solid var(--red);
-      padding: 1.8rem;
+      padding: 1.5rem;
     }
     .stat-number {
       font-family: 'Playfair Display', serif;
-      font-size: 2.4rem; font-weight: 900; color: var(--red); line-height: 1;
-      margin-bottom: 0.5rem;
+      font-size: 2.1rem; font-weight: 900; color: var(--red); line-height: 1;
+      margin-bottom: 0.4rem;
     }
-    .stat-label { color: var(--grey); font-size: 0.88rem; line-height: 1.5; }
+    .stat-label { color: var(--grey); font-size: 0.85rem; line-height: 1.5; }
 
-    .charts-placeholder {
-      background: var(--card); border: 1px dashed var(--border);
-      padding: 3rem 2rem; text-align: center;
-      color: var(--grey-mid); margin-bottom: 2rem;
+    .charts-area {
+      margin-bottom: 2rem;
+      display: flex; flex-direction: column; gap: 1.5rem;
+      align-items: center;
     }
-    .charts-placeholder span { display: block; font-size: 2rem; margin-bottom: 0.5rem; }
+    .charts-area img { width: 100%; max-width: 900px; }
 
     .analysis-text { color: var(--grey); line-height: 1.8; max-width: 780px; }
     .analysis-text p { margin-bottom: 1.2rem; }
 
     /* ===================== CARTOGRAPHIE ===================== */
-    #cartographies .map-intro {
-      color: var(--grey); max-width: 760px; margin-bottom: 2.5rem; line-height: 1.8;
+    .map-intro {
+      color: var(--grey); max-width: 760px; margin-bottom: 2rem; line-height: 1.8;
     }
-    .map-placeholder {
-      background: var(--card); border: 1px dashed var(--border);
-      padding: 5rem 2rem; text-align: center; color: var(--grey-mid);
-      margin-bottom: 1.5rem;
+    .map-img-wrap {
+      margin-bottom: 1.5rem; overflow: hidden;
     }
-    .map-placeholder span { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
-    .map-caption { font-size: 0.85rem; color: var(--grey-mid); font-style: italic; }
+    .map-img-wrap img { width: 100%; max-width: 900px; margin: 0 auto; }
     .map-text-block {
-      margin-top: 3rem; color: var(--grey); line-height: 1.8;
-      background: var(--card); border-left: 3px solid var(--red); padding: 1.5rem 2rem;
+      margin-top: 1.5rem; color: var(--grey); line-height: 1.8;
+      background: var(--card); border-left: 3px solid var(--red); padding: 1.5rem;
+      font-size: 0.92rem;
+    }
+    .map-text-block strong {
+      color: var(--white); display: block; margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif; font-size: 1.05rem;
     }
 
     /* ===================== ARGUMENTS POUR / CONTRE ===================== */
-    .args-grid { display: grid; gap: 1.5rem; margin-top: 2.5rem; }
+    .args-grid { display: grid; gap: 1.2rem; margin-top: 2rem; }
     .arg-card {
       background: var(--card); border: 1px solid var(--border);
-      padding: 1.8rem; position: relative; overflow: hidden;
+      padding: 1.5rem; position: relative; overflow: hidden;
     }
     .arg-card::before {
       content: ''; position: absolute; left: 0; top: 0; bottom: 0;
@@ -228,187 +264,261 @@
     #arguments-contre .arg-card::before { background: var(--red); }
     .arg-quote {
       font-family: 'Playfair Display', serif;
-      font-style: italic; font-size: 1.05rem; color: var(--white);
-      line-height: 1.6; margin-bottom: 1rem;
+      font-style: italic; font-size: 1rem; color: var(--white);
+      line-height: 1.65; margin-bottom: 0.8rem;
     }
     .arg-quotedeux {
       font-family: 'Playfair Display', serif;
-      font-style: italic; font-size: 1.05rem; color: var(--white);
-      line-height: 1.6; margin-bottom: 1rem;
+      font-style: italic; font-size: 1rem; color: var(--white);
+      line-height: 1.65; margin-bottom: 0.8rem;
     }
-    .arg-quote:before { content: '"'; color: var(--red); font-size: 1.4rem; }
-    .arg-quote::after { content: '"'; color: var(--red); font-size: 1.4rem; }
-    .arg-quotedeux::after { content: '"'; color: var(--red); font-size: 1.4rem; }
-    .arg-meta {
-      font-size: 0.8rem; color: var(--grey); letter-spacing: 0.05em;
-    }
-    .arg-author { color: var(--grey); font-weight: 600; }
+    .arg-quote::before { content: '"'; color: var(--red); font-size: 1.3rem; }
+    .arg-quote::after  { content: '"'; color: var(--red); font-size: 1.3rem; }
+    .arg-quotedeux::after { content: '"'; color: var(--red); font-size: 1.3rem; }
+    .arg-meta { font-size: 0.78rem; color: var(--grey); letter-spacing: 0.04em; }
+    .arg-author { font-weight: 600; }
     .arg-type-badge {
-      display: inline-block; font-size: 0.65rem; letter-spacing: 0.12em;
-      text-transform: uppercase; padding: 0.2rem 0.6rem;
+      display: inline-block; font-size: 0.62rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.18rem 0.55rem;
       border: 1px solid var(--border); color: var(--grey-mid);
-      margin-bottom: 1rem; margin-right: 0.5rem;
+      margin-bottom: 0.8rem; margin-right: 0.4rem;
     }
 
     /* ===================== TÉMOIGNAGES ===================== */
-    #temoignages .testimonials-grid { display: grid; gap: 1.5rem; margin-top: 2.5rem; }
+    .testimonials-grid { display: grid; gap: 1.2rem; margin-top: 2rem; }
     .testimonial-card {
       background: var(--card); border-left: 3px solid var(--red);
-      padding: 2rem; border-radius: 2px;
+      padding: 1.5rem;
     }
     .testimonial-carddeux {
       background: var(--card); border-left: 3px solid #2ECC71;
-      padding: 2rem; border-radius: 2px;
+      padding: 1.5rem;
     }
     .testimonial-author {
-      margin-top: 1rem; font-size: 0.8rem; color: var(--grey); letter-spacing: 0.06em;
+      margin-top: 0.8rem; font-size: 0.78rem; color: var(--grey); letter-spacing: 0.05em;
     }
     .temoin {
       font-family: 'Playfair Display', serif;
-      font-style: italic; font-size: 1.05rem; color: var(--white);
-      line-height: 1.6; margin-bottom: 1rem;
+      font-style: italic; font-size: 0.97rem; color: var(--white);
+      line-height: 1.65;
     }
-    .temoin::before { content: '"'; color: var(--red); font-size: 1.4rem; }
-    .temoin::after { content: '"'; color: var(--red); font-size: 1.4rem; }
+    .temoin::before { content: '"'; color: var(--red); font-size: 1.3rem; }
+    .temoin::after  { content: '"'; color: var(--red); font-size: 1.3rem; }
 
     /* ===================== POINTS DE FRICTION ===================== */
-    #friction .friction-grid { display: grid; gap: 1.5rem; margin-top: 2.5rem; }
+    .friction-grid { display: grid; gap: 1.2rem; margin-top: 2rem; }
     .friction-item {
-      background: var(--card); border: 1px solid var(--border); padding: 2rem;
+      background: var(--card); border: 1px solid var(--border); padding: 1.5rem;
     }
     .friction-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem; color: var(--red); margin-bottom: 1rem;
+      font-size: 1.15rem; color: var(--red); margin-bottom: 0.8rem;
       font-weight: 700;
     }
-    .friction-sides { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
-    .friction-side { font-size: 0.9rem; color: var(--grey); line-height: 1.7; }
+    .friction-sides {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem; margin-top: 0.8rem;
+    }
+    .friction-side { font-size: 0.88rem; color: var(--grey); line-height: 1.7; }
     .friction-side-label {
-      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-      font-weight: 600; margin-bottom: 0.5rem; padding-bottom: 0.4rem;
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 0.4rem; padding-bottom: 0.35rem;
       border-bottom: 1px solid var(--border);
     }
     .pro-label { color: #2ECC71; }
     .con-label { color: var(--red); }
 
     /* ===================== AFFICHE ===================== */
-    #affiche {
-      max-width: 900px; text-align: center;
-    }
+    #affiche { text-align: center; }
     .affiche-zone {
-      background: var(--card); border: 2px dashed var(--border);
-      padding: 5rem 2rem; color: var(--grey-mid); 
+      background: var(--card); border: 1px solid var(--border);
+      padding: 1.5rem;
+      display: flex; align-items: center; justify-content: center;
     }
-    .affiche-zone span { font-size: 3rem; display: block; margin-bottom: 1rem; }
+    .affiche-zone img { width: 100%; max-width: 1100px; }
 
-    /* ===================== INFORMATIONS COMPLÉMENTAIRES ===================== */
-    #infos-complementaires .img-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem; margin-bottom: 3rem;
+    /* ===================== INFOS COMPLÉMENTAIRES ===================== */
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem; margin-bottom: 2.5rem;
     }
-    .img-item { }
+    .img-item {}
     .img-placeholder {
-      background: var(--card); border: 1px dashed var(--border);
-      aspect-ratio: 4/3; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      color: var(--grey-mid); margin-bottom: 0.5rem;
+      background: var(--card); border: 1px solid var(--border);
+      overflow: hidden; margin-bottom: 0.5rem;
+      display: flex; align-items: center; justify-content: center;
     }
-    .img-placeholder span { font-size: 2rem; margin-bottom: 0.3rem; }
-    .img-src { font-size: 0.7rem; color: var(--grey-mid); word-break: break-all; }
+    .img-placeholder img { width: 100%; height: auto; object-fit: cover; }
     .img-caption { font-size: 0.82rem; color: var(--grey); margin-bottom: 0.3rem; }
+    .img-src { font-size: 0.7rem; color: var(--grey-mid); word-break: break-all; }
 
-    .glossary-section { margin-top: 3rem; }
-    .glossary-category {
-      margin-bottom: 2.5rem;
-    }
+    .glossary-section { margin-top: 2.5rem; }
+    .glossary-category { margin-bottom: 2rem; }
     .glossary-cat-title {
-      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--red); font-weight: 600; margin-bottom: 1.2rem;
-      padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red); font-weight: 600; margin-bottom: 1rem;
+      padding-bottom: 0.4rem; border-bottom: 1px solid var(--border);
     }
     .glossary-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.8rem;
     }
     .gloss-item {
-      background: var(--card); padding: 1rem 1.2rem; border: 1px solid var(--border);
+      background: var(--card); padding: 0.9rem 1.1rem; border: 1px solid var(--border);
     }
     .gloss-term {
       font-family: 'Playfair Display', serif;
-      font-style: italic; color: var(--red); font-size: 1rem; margin-bottom: 0.3rem;
+      font-style: italic; color: var(--red); font-size: 0.97rem; margin-bottom: 0.25rem;
     }
-    .gloss-def { font-size: 0.85rem; color: var(--grey); line-height: 1.5; }
+    .gloss-def { font-size: 0.83rem; color: var(--grey); line-height: 1.5; }
 
     /* ===================== SOURCES ===================== */
-    #sources .sources-list {
-      display: grid; gap: 0.5rem; margin-top: 2rem;
+    .sources-list {
+      display: grid; gap: 0.45rem; margin-top: 1.8rem;
     }
     .source-link {
-      color: var(--grey); font-size: 0.85rem; word-break: break-all;
+      color: var(--grey); font-size: 0.83rem; word-break: break-all;
       transition: color 0.2s; text-decoration: none;
-      display: flex; gap: 0.5rem; align-items: flex-start;
+      display: flex; gap: 0.45rem; align-items: flex-start;
     }
     .source-link::before {
       content: '→'; color: var(--red); flex-shrink: 0; margin-top: 0.05rem;
     }
     .source-link:hover { color: var(--white); }
-    .videos-section { margin-top: 3.5rem; }
+    .videos-section { margin-top: 3rem; }
     .videos-label {
-      font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--red); font-weight: 600; margin-bottom: 1.5rem;
+      font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--red); font-weight: 600; margin-bottom: 1.2rem;
     }
-    .videos-text { color: var(--grey); font-size: 0.95rem; margin-bottom: 1rem; }
-    .video-links { display: flex; flex-direction: column; gap: 0.6rem; }
+    .videos-text { color: var(--grey); font-size: 0.93rem; margin-bottom: 0.8rem; }
+    .video-links { display: flex; flex-direction: column; gap: 0.55rem; }
     .video-link {
-      color: var(--grey); text-decoration: none; font-size: 0.88rem;
+      color: var(--grey); text-decoration: none; font-size: 0.87rem;
       display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s;
     }
-    .video-link::before { content: '▶'; color: var(--red); font-size: 0.7rem; }
+    .video-link::before { content: '▶'; color: var(--red); font-size: 0.68rem; flex-shrink: 0; }
     .video-link:hover { color: var(--white); }
 
     /* ===================== QUI SOMMES-NOUS ===================== */
-    #qui-sommes-nous .about-text {
-      color: var(--grey); max-width: 720px; line-height: 1.8; margin-bottom: 2.5rem;
-      font-size: 1rem;
+    .about-text {
+      color: var(--grey); max-width: 720px; line-height: 1.8; margin-bottom: 2rem;
+      font-size: 0.97rem;
     }
+    .about-text b { color: var(--white); font-size: 1rem; }
+    .about-logo { margin: 1rem 0; }
+    .about-logo img { max-width: 220px; }
     .team-photo-zone {
-      background: var(--card); border: 2px dashed var(--border);
-      padding: 5rem 2rem; text-align: center; color: var(--grey-mid); max-width: 6000px;
+      background: var(--card); border: 1px solid var(--border);
+      padding: 1.2rem; overflow: hidden;
+      max-width: 900px;
     }
-    .team-photo-zone span { font-size: 3rem; display: block; margin-bottom: 1rem; }
+    .team-photo-zone img { width: 100%; max-width: 900px; }
     .team-names {
-      margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.8rem;
+      margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.7rem;
     }
     .team-name {
       font-family: 'Playfair Display', serif;
       background: var(--card); border: 1px solid var(--border);
       border-left: 3px solid var(--red);
-      padding: 0.6rem 1.2rem; font-size: 0.9rem; color: var(--white);
+      padding: 0.5rem 1rem; font-size: 0.88rem; color: var(--white);
     }
 
     /* ===================== FOOTER ===================== */
     footer {
       background: var(--surface);
       border-top: 1px solid var(--red);
-      padding: 2.5rem 2rem; text-align: center;
+      padding: 2rem 1.5rem; text-align: center;
     }
     .footer-authors {
       font-family: 'Playfair Display', serif;
-      font-size: 1rem; color: var(--white); margin-bottom: 0.5rem;
+      font-size: 0.95rem; color: var(--white); margin-bottom: 0.4rem;
+      line-height: 1.7;
     }
     .footer-authors span { color: var(--red); }
-    .footer-date { color: var(--grey); font-size: 0.85rem; }
-    .footer-school { color: var(--grey-mid); font-size: 0.75rem; margin-top: 0.3rem; letter-spacing: 0.08em; }
+    .footer-date { color: var(--grey); font-size: 0.83rem; }
+    .footer-school { color: var(--grey-mid); font-size: 0.73rem; margin-top: 0.3rem; letter-spacing: 0.07em; }
 
-    /* ===================== UTILITY ===================== */
+    /* ===================== UTILITIES ===================== */
     .red { color: var(--red); }
-    .full-bleed { max-width: 100%; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); }
-    @media (max-width: 700px) {
-      .friction-sides { grid-template-columns: 1fr; }
+
+    /* ===================== RESPONSIVE — TABLET ≤ 900px ===================== */
+    @media (max-width: 900px) {
       .nav-links { display: none; }
+      .burger { display: flex; }
+
+      section { padding: 55px 1.2rem; }
+
+      .friction-sides { grid-template-columns: 1fr; gap: 1rem; }
+
+      .stats-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+      .tl-icon { left: -80px; font-size: 1.2rem; }
+      .timeline { padding-left: 55px; }
+      .tl-dot { left: -40px; }
+      .timeline::before { left: 18px; }
+    }
+
+    /* ===================== RESPONSIVE — MOBILE ≤ 600px ===================== */
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .nav-brand { font-size: 0.95rem; }
+
+      #accueil { padding: 90px 1rem 50px; }
+      .hero-bg-text { font-size: clamp(60px, 22vw, 120px); }
+
+      section { padding: 45px 1rem; }
+
+      /* Timeline — icônes masquées, ligne plus proche */
       .tl-icon { display: none; }
-      .timeline { padding-left: 50px; }
-      .tl-dot { left: -30px; }
+      .timeline { padding-left: 42px; }
+      .timeline::before { left: 12px; }
+      .tl-dot { left: -32px; top: 5px; width: 12px; height: 12px; }
+      .tl-year { font-size: 1.2rem; }
+      .tl-event { font-size: 0.88rem; }
+      .tl-desc { font-size: 0.82rem; }
+
+      /* Stats : 2 colonnes minimum */
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+      .stat-number { font-size: 1.6rem; }
+
+      /* Glossaire : 1 colonne */
+      .glossary-grid { grid-template-columns: 1fr; }
+
+      /* Images : 1 colonne */
+      .img-grid { grid-template-columns: 1fr; }
+
+      /* Friction : 1 colonne */
+      .friction-sides { grid-template-columns: 1fr; }
+
+      /* Footer noms sur plusieurs lignes */
+      .footer-authors { font-size: 0.82rem; }
+
+      /* Team names wrap */
+      .team-names { gap: 0.5rem; }
+      .team-name { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+
+      /* Map text block */
+      .map-text-block { padding: 1rem; }
+
+      /* Arg cards */
+      .arg-card { padding: 1.1rem; }
+      .arg-quote, .arg-quotedeux { font-size: 0.93rem; }
+
+      /* Testimonials */
+      .testimonial-card, .testimonial-carddeux { padding: 1.1rem; }
+      .temoin { font-size: 0.9rem; }
+
+      /* About logo */
+      .about-logo img { max-width: 160px; }
+    }
+
+    /* ===================== RESPONSIVE — VERY SMALL ≤ 380px ===================== */
+    @media (max-width: 380px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 1.65rem; }
     }
   </style>
 </head>
@@ -417,6 +527,8 @@
 <!-- ==================== NAV ==================== -->
 <nav>
   <a class="nav-brand" href="#accueil">LA CORRIDA</a>
+
+  <!-- Desktop links -->
   <ul class="nav-links">
     <li><a href="#accueil">Accueil</a></li>
     <li><a href="#chronologie">Chronologie</a></li>
@@ -425,19 +537,40 @@
     <li><a href="#arguments-pour">Pour</a></li>
     <li><a href="#arguments-contre">Contre</a></li>
     <li><a href="#temoignages">Témoignages</a></li>
-    <li><a href="#friction">Points de Friction</a></li>
+    <li><a href="#friction">Friction</a></li>
     <li><a href="#affiche">Affiche</a></li>
     <li><a href="#infos-complementaires">Infos</a></li>
     <li><a href="#sources">Sources</a></li>
     <li><a href="#qui-sommes-nous">Équipe</a></li>
   </ul>
+
+  <!-- Burger button -->
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- Mobile menu drawer -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#accueil"           onclick="closeMobile()">Accueil</a>
+  <a href="#chronologie"       onclick="closeMobile()">Chronologie</a>
+  <a href="#chiffres"          onclick="closeMobile()">Chiffres Clés</a>
+  <a href="#cartographies"     onclick="closeMobile()">Cartographies</a>
+  <a href="#arguments-pour"    onclick="closeMobile()">Arguments Pour</a>
+  <a href="#arguments-contre"  onclick="closeMobile()">Arguments Contre</a>
+  <a href="#temoignages"       onclick="closeMobile()">Témoignages</a>
+  <a href="#friction"          onclick="closeMobile()">Points de Friction</a>
+  <a href="#affiche"           onclick="closeMobile()">Notre Affiche</a>
+  <a href="#infos-complementaires" onclick="closeMobile()">Infos Complémentaires</a>
+  <a href="#sources"           onclick="closeMobile()">Sources</a>
+  <a href="#qui-sommes-nous"   onclick="closeMobile()">Qui Sommes-Nous ?</a>
+</div>
+
 <!-- ==================== ACCUEIL ==================== -->
-<div id="accueil" style="padding-top:120px; padding-bottom:80px; max-width:1100px; margin:0 auto; position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding-left:2rem; padding-right:2rem;">
+<div id="accueil">
   <div class="hero-bg-text">TORO</div>
   <p class="hero-eyebrow">Controverse — ESIEE Paris 2026</p>
-  <h1 class="hero-title">La Corrida :<br><em>Tradition à conserver</em><br>ou torture barbare ?</h1>
+  <h1 class="hero-title">La Corrida :<br><em>Tradition à conserver</em><br>ou torture barbare&nbsp;?</h1>
   <div class="hero-divider"></div>
   <div class="hero-intro">
     <p>La Corrida est un évènement qui a été réalisé pour la première fois au 18ème siècle. Celui-ci a lieu dans une arène où le matador — un homme chargé d'esquiver le taureau pour amuser la foule puis de l'abattre — et le taureau, plus particulièrement de la race des taureaux de combat, s'affrontent dans un duel.</p>
@@ -453,7 +586,6 @@
   <p class="section-label">02 — Histoire</p>
   <h2 class="section-title">Chronologie</h2>
   <div class="timeline">
-    <!-- Avant 815 -->
     <div class="tl-item">
       <div class="tl-icon">🐂</div>
       <div class="tl-dot"></div>
@@ -461,7 +593,6 @@
       <div class="tl-event">Premières traces de courses de taureaux</div>
       <div class="tl-desc">Des spectacles impliquant des taureaux sont organisés dans la péninsule Ibérique dès le Moyen Âge. Ces jeux populaires sont les ancêtres des corridas modernes.</div>
     </div>
-    <!-- 1726 -->
     <div class="tl-item">
       <div class="tl-icon">⚔️</div>
       <div class="tl-dot"></div>
@@ -469,7 +600,6 @@
       <div class="tl-event">Première corrida moderne</div>
       <div class="tl-desc">Le matador combat le taureau à pied avec l'épée et la muleta. Ce modèle devient progressivement la forme dominante de la corrida en Espagne.</div>
     </div>
-    <!-- 1835 -->
     <div class="tl-item">
       <div class="tl-icon">🏟️</div>
       <div class="tl-dot"></div>
@@ -477,7 +607,6 @@
       <div class="tl-event">Inauguration des grandes arènes de Madrid</div>
       <div class="tl-desc">L'essor des arènes permanentes contribue à faire de la corrida un spectacle populaire et un symbole de la culture espagnole.</div>
     </div>
-    <!-- 1845 -->
     <div class="tl-item">
       <div class="tl-icon">🐾</div>
       <div class="tl-dot"></div>
@@ -485,7 +614,6 @@
       <div class="tl-event">Fondation de la SPA</div>
       <div class="tl-desc">Création de la Société Protectrice des Animaux en France. Les premières critiques organisées contre la souffrance animale commencent à émerger.</div>
     </div>
-    <!-- 1850 -->
     <div class="tl-item">
       <div class="tl-icon">📖</div>
       <div class="tl-dot"></div>
@@ -493,7 +621,6 @@
       <div class="tl-event">Publication de "La Tauromachie complète"</div>
       <div class="tl-desc">Le torero Francisco Montes publie l'un des premiers grands traités codifiant les règles modernes de la corrida.</div>
     </div>
-    <!-- 1851 -->
     <div class="tl-item">
       <div class="tl-icon">⚖️</div>
       <div class="tl-dot"></div>
@@ -501,7 +628,6 @@
       <div class="tl-event">Loi Grammont</div>
       <div class="tl-desc">Première loi française de protection animale. Elle sanctionne les mauvais traitements publics envers les animaux, mais la corrida conserve une exception liée à la tradition.</div>
     </div>
-    <!-- 1928 -->
     <div class="tl-item">
       <div class="tl-icon">🤝</div>
       <div class="tl-dot"></div>
@@ -509,7 +635,6 @@
       <div class="tl-event">Création de la Fédération des Sociétés de Protection Animale</div>
       <div class="tl-desc">Les associations de défense animale se structurent davantage et renforcent leurs actions de sensibilisation.</div>
     </div>
-    <!-- 1975 -->
     <div class="tl-item">
       <div class="tl-icon">📚</div>
       <div class="tl-dot"></div>
@@ -517,7 +642,6 @@
       <div class="tl-event">Publication de "La Libération animale"</div>
       <div class="tl-desc">Le philosophe Peter Singer publie un ouvrage majeur dénonçant le spécisme. Ses idées influenceront durablement les mouvements de défense animale.</div>
     </div>
-    <!-- 1980 -->
     <div class="tl-item">
       <div class="tl-icon">🚫</div>
       <div class="tl-dot"></div>
@@ -525,7 +649,6 @@
       <div class="tl-event">Position de l'UNESCO</div>
       <div class="tl-desc">Une déclaration souvent relayée par les opposants à la corrida assimile la mise à mort du taureau à une forme de cruauté. Cet épisode devient une référence dans les débats sur la tauromachie.</div>
     </div>
-    <!-- 1991 -->
     <div class="tl-item">
       <div class="tl-icon">🏝️</div>
       <div class="tl-dot"></div>
@@ -533,7 +656,6 @@
       <div class="tl-event">Interdiction aux Canaries</div>
       <div class="tl-desc">Les îles Canaries adoptent une loi de protection animale qui interdit de fait les corridas sur leur territoire.</div>
     </div>
-    <!-- 1992 -->
     <div class="tl-item">
       <div class="tl-icon">🌟</div>
       <div class="tl-dot"></div>
@@ -541,7 +663,6 @@
       <div class="tl-event">Création de la Fondation Brigitte Bardot</div>
       <div class="tl-desc">La fondation s'engage dans de nombreuses campagnes contre la corrida et contribue à médiatiser la cause animale en France.</div>
     </div>
-    <!-- 1994 -->
     <div class="tl-item">
       <div class="tl-icon">🤛</div>
       <div class="tl-dot"></div>
@@ -549,7 +670,6 @@
       <div class="tl-event">Création de l'Alliance Anticorrida</div>
       <div class="tl-desc">L'association mène des actions juridiques et médiatiques. Elle obtient notamment que l'usage du terme « école » soit limité pour les écoles taurines dans certaines publications.</div>
     </div>
-    <!-- 2002 -->
     <div class="tl-item">
       <div class="tl-icon">🌐</div>
       <div class="tl-dot"></div>
@@ -557,7 +677,6 @@
       <div class="tl-event">Création du CAS International</div>
       <div class="tl-desc">L'organisation néerlandaise coordonne les campagnes européennes contre la corrida et soutient de nombreuses associations locales.</div>
     </div>
-    <!-- 2007 -->
     <div class="tl-item">
       <div class="tl-icon">🌍</div>
       <div class="tl-dot"></div>
@@ -565,7 +684,6 @@
       <div class="tl-event">Création du Réseau International Antitauromachie</div>
       <div class="tl-desc">Plusieurs organisations européennes unissent leurs efforts afin d'accroître la pression sur les institutions nationales et européennes.</div>
     </div>
-    <!-- 2010 -->
     <div class="tl-item">
       <div class="tl-icon">🏛️</div>
       <div class="tl-dot"></div>
@@ -573,7 +691,6 @@
       <div class="tl-event">La corrida inscrite au patrimoine culturel français</div>
       <div class="tl-desc">Le ministère français de la Culture inscrit temporairement la corrida à l'inventaire du patrimoine culturel immatériel.</div>
     </div>
-    <!-- 2012 -->
     <div class="tl-item">
       <div class="tl-icon">❌</div>
       <div class="tl-dot"></div>
@@ -581,7 +698,6 @@
       <div class="tl-event">Annulation de l'inscription</div>
       <div class="tl-desc">À la suite de recours d'associations, l'inscription de la corrida au patrimoine culturel immatériel français est retirée.</div>
     </div>
-    <!-- 2013 -->
     <div class="tl-item">
       <div class="tl-icon">⚖️</div>
       <div class="tl-dot"></div>
@@ -589,7 +705,6 @@
       <div class="tl-event">Validation de l'exception taurine par le Conseil constitutionnel</div>
       <div class="tl-desc">Le Conseil constitutionnel juge conforme à la Constitution l'exception autorisant la corrida dans certaines régions où existe une tradition locale ininterrompue.</div>
     </div>
-    <!-- 2016 -->
     <div class="tl-item">
       <div class="tl-icon">🐃</div>
       <div class="tl-dot"></div>
@@ -597,7 +712,6 @@
       <div class="tl-event">Création de Fundación Toro de Lidia</div>
       <div class="tl-desc">Cette organisation espagnole défend la tauromachie comme patrimoine culturel et activité économique génératrice d'emplois.</div>
     </div>
-    <!-- 2021 -->
     <div class="tl-item">
       <div class="tl-icon">💶</div>
       <div class="tl-dot"></div>
@@ -605,7 +719,6 @@
       <div class="tl-event">Suppression des subventions à la corrida dans certaines villes</div>
       <div class="tl-desc">Plusieurs municipalités espagnoles et françaises réduisent ou suppriment leurs aides publiques aux spectacles taurins.</div>
     </div>
-    <!-- Novembre 2024 -->
     <div class="tl-item">
       <div class="tl-icon">📜</div>
       <div class="tl-dot"></div>
@@ -613,7 +726,6 @@
       <div class="tl-event">Rejet d'une proposition de loi au Sénat</div>
       <div class="tl-desc">Le Sénat français rejette une proposition visant à interdire l'accès des arènes aux mineurs de moins de 16 ans, soutenue par plusieurs associations de protection animale.</div>
     </div>
-    <!-- 2025 -->
     <div class="tl-item">
       <div class="tl-icon">🇪🇺</div>
       <div class="tl-dot"></div>
@@ -623,12 +735,9 @@
     </div>
   </div>
 
-  <!-- Zone de texte définitions -->
   <div class="definitions-area">
     <h3>📝 Zone de définitions</h3>
-    <p><u><b>Spécisme</b></u> : Ce teme est généralement défini comme le fait de considérer l'existence d'une hiérarchie</p>
-    <p>entre les humains et les animaux. Une hiérachie qui justifierait l'exploitation et le massacre de</p>
-    <p>milliards d'entre eux pour notre alimentation, notre confort et notre divertissement.</p>
+    <p><u><b>Spécisme</b></u> : Ce terme est généralement défini comme le fait de considérer l'existence d'une hiérarchie entre les humains et les animaux. Une hiérarchie qui justifierait l'exploitation et le massacre de milliards d'entre eux pour notre alimentation, notre confort et notre divertissement.</p>
     <br>
     <p><u><b>Tauromachie</b></u> : Art de combattre des taureaux dans une arène.</p>
   </div>
@@ -639,7 +748,7 @@
 <section id="chiffres">
   <p class="section-label">03 — Données</p>
   <h2 class="section-title">Chiffres Clés</h2>
-  <p style="color:var(--grey); margin-bottom:2.5rem; font-size:1rem;">La Corrida c'est :</p>
+  <p style="color:var(--grey); margin-bottom:2rem; font-size:0.97rem;">La Corrida c'est :</p>
 
   <div class="stats-grid">
     <div class="stat-card">
@@ -668,12 +777,10 @@
     </div>
   </div>
 
-  <!-- Graphiques placeholder -->
-  <div class="charts-placeholder">
-    <img src="Images/1-.png" alt="graphiques du nombre de Corridas organisées en Espagne entre 2007 et 2023 et graphique du nombre de spectateurs aux arènes (millions, Espagne)" width = 900/>
-    
-    <img src="Images/2-.png" alt="Opinion publique sur la corrida (France, 2023) et répartition des corridas par pays" width = 900/>
-    <img src="Images/3-.png" alt="Evolution du cheptel de taureaux de combat en Espagne" width = 900/>
+  <div class="charts-area">
+    <img src="Images/1-.png" alt="Nombre de corridas organisées en Espagne 2007–2023 et nombre de spectateurs aux arènes" />
+    <img src="Images/2-.png" alt="Opinion publique sur la corrida en France 2023 et répartition des corridas par pays" />
+    <img src="Images/3-.png" alt="Évolution du cheptel de taureaux de combat en Espagne" />
   </div>
 
   <div class="analysis-text">
@@ -691,44 +798,23 @@
   <h2 class="section-title">Cartographies</h2>
   <p class="map-intro">La cartographie ci-dessous représente la majorité des acteurs qui prennent part dans le débat autour de la Corrida. Cette cartographie permet de se rendre compte du rôle global de chaque acteur, ainsi que de son niveau d'engagement, pour le définir, les critères comme l'influence (international, national ou local) et leurs objectifs (changements de lois, changer l'opinion publique) ont été utilisés.</p>
 
-  <div class="map-placeholder">
-    <img src="Images/Cartographie.png" alt="La Cartographie des acteurs en faveur et contre la Corrida" width = 900/>
+  <div class="map-img-wrap">
+    <img src="Images/Cartographie.png" alt="Cartographie des acteurs en faveur et contre la Corrida" />
   </div>
 
   <div class="map-text-block">
-    <p style="color:var(--grey); line-height:1.8;">
-      <strong style="color:var(--white); display:block; margin-bottom:0.5rem;">I/Défense de la corrida</strong>
-      Tout d'abord, la défense au niveau institutionnel de la Tauromachie est séparée en 3 groupes : l'Observatoire National des Cultures Taurines (ONCT, France), l'Union des Villes Taurines de France (UVTF) et Fundacion Toro de Lidia (FTL, Espagne). Ces acteurs sont composés de profils tels que des experts juridiques, des élus locaux, et des fondations privées. Ils ont un engagement très important car ce sont eux qui ont les compétences juridiques et qui tiennent le rôle de porte-parole auprès de l'État 
-      (en France comme en Espagne). Sachant que l'ONCT a été créé en 2010 par décret, cela lui confère une légitimité étatique forte. L'UVTF, quant à elle, regroupe des villes emblématiques comme Nîmes, Bayonne ou Arles, ancrant ainsi la défense institutionnelle dans le Sud-Ouest français et illustrant le poids électoral local de la corrida. Enfin,  
-      la Fundación Toro de Lidia a joué un rôle clé dans l'inscription de la tauromachie au registre des Biens d'Intérêt Culturel en Espagne en 2013, qui représente la victoire concrète la plus significative de ce camp. 
-      Leur objectif principal est d'acquérir la reconnaissance de la Corrida comme patrimoine culturel immatériel. 
-      Ensuite, plusieurs acteurs qui défendent la Corrida ont un impact direct sur le système économique de la Corrida en prenant part sur ce marché. Par exemple, ANOET (Espagne) qui regroupe des organisateurs de spectacle taurins, ou bien l'association des éleveurs (France), participent respectivement à l'organisation de spectacle de Corrida et à l'élevage de taureaux de combat. On peut également citer l'École de Tauromachie de Nîmes, qui représente la dimension de transmission du savoir-faire. 
-      Ce qui contribue à faire fonctionner l'économie du marché de la tauromachie. 
-      Un exemple d'action importante serait leur gestion des élevages extensifs en Camargue ou Dehesa, qui sont présentés comme des modèles de biodiversité.
-    </p>
+    <strong>I / Défense de la corrida</strong>
+    Tout d'abord, la défense au niveau institutionnel de la Tauromachie est séparée en 3 groupes : l'Observatoire National des Cultures Taurines (ONCT, France), l'Union des Villes Taurines de France (UVTF) et Fundacion Toro de Lidia (FTL, Espagne). Ces acteurs sont composés de profils tels que des experts juridiques, des élus locaux, et des fondations privées. Ils ont un engagement très important car ce sont eux qui ont les compétences juridiques et qui tiennent le rôle de porte-parole auprès de l'État (en France comme en Espagne). Sachant que l'ONCT a été créé en 2010 par décret, cela lui confère une légitimité étatique forte. L'UVTF, quant à elle, regroupe des villes emblématiques comme Nîmes, Bayonne ou Arles, ancrant ainsi la défense institutionnelle dans le Sud-Ouest français et illustrant le poids électoral local de la corrida. Enfin, la Fundación Toro de Lidia a joué un rôle clé dans l'inscription de la tauromachie au registre des Biens d'Intérêt Culturel en Espagne en 2013, qui représente la victoire concrète la plus significative de ce camp. Leur objectif principal est d'acquérir la reconnaissance de la Corrida comme patrimoine culturel immatériel. Ensuite, plusieurs acteurs qui défendent la Corrida ont un impact direct sur le système économique de la Corrida en prenant part sur ce marché. Par exemple, ANOET (Espagne) qui regroupe des organisateurs de spectacle taurins, ou bien l'association des éleveurs (France), participent respectivement à l'organisation de spectacle de Corrida et à l'élevage de taureaux de combat. On peut également citer l'École de Tauromachie de Nîmes, qui représente la dimension de transmission du savoir-faire. Un exemple d'action importante serait leur gestion des élevages extensifs en Camargue ou Dehesa, qui sont présentés comme des modèles de biodiversité.
   </div>
 
   <div class="map-text-block">
-    <p style="color:var(--grey); line-height:1.8;">
-      <strong style="color:var(--white); display:block; margin-bottom:0.5rem;">II/ Abolition de la Corrida</strong>
-      De l'autre côté, les acteurs anti-corrida utilisent plusieurs stratégies pour gagner du terrain dans cette controverse. 
-      Concernant la communication à l'internationale, l'ONG PETA (Pour une Éthique concernant le Traitement des Animaux), qui compte plus de 9 millions de membres et constitue l'une des plus grandes ONG animalistes au monde, ou encore la Fondation Brigitte Bardot, particulièrement active en France et disposant d'une résonance nationale forte, s'adressent au grand public dans le but de gagner le débat dans l'opinion publique. Ils sont donc très présents du côté médiatique. 
-      Pour citer des exemples d'actions, ces acteurs organisent des campagnes d'affichage massives, lancent également des pétitions mondiales, et organisent des manifestations devant les arènes, notamment à Bayonne ou Nîmes lors des férias, constituant des actions directes très médiatisées. Ils s'appuient également sur les réseaux sociaux comme levier de mobilisation, notamment auprès des jeunes générations. 
-      Sur le plan politique, il existe des partis politiques comme PACMA (Espagne, traduit = Pour les Animaux, l'Environnement et la Justice sociale) et PAN (Portugal, traduit = Personne – Animaux - Nature) qui portent l'idée du respect de l'animal dans la législation espagnole et portugaise. Ils ont un impact qui s'agrandit grâce à leur électorat croissant dans les zones urbaines, PACMA ayant par exemple obtenu plus de 300 000 voix aux élections législatives espagnoles de 2019. 
-      Ils déposent des projets de lois comme : l'interdiction de l'accès aux mineurs au spectacle de tauromachie ; ou bien la suspension des finances publiques accordées à ces derniers. Le résultat législatif le plus récent et le plus significatif de ce camp reste l'interdiction de la corrida votée au Portugal en 2023, portée notamment par PAN, hors Açores.
-    </p>
+    <strong>II / Abolition de la Corrida</strong>
+    De l'autre côté, les acteurs anti-corrida utilisent plusieurs stratégies pour gagner du terrain dans cette controverse. Concernant la communication à l'internationale, l'ONG PETA (Pour une Éthique concernant le Traitement des Animaux), qui compte plus de 9 millions de membres et constitue l'une des plus grandes ONG animalistes au monde, ou encore la Fondation Brigitte Bardot, particulièrement active en France et disposant d'une résonance nationale forte, s'adressent au grand public dans le but de gagner le débat dans l'opinion publique. Ils sont donc très présents du côté médiatique. Pour citer des exemples d'actions, ces acteurs organisent des campagnes d'affichage massives, lancent également des pétitions mondiales, et organisent des manifestations devant les arènes, notamment à Bayonne ou Nîmes lors des férias. Ils s'appuient également sur les réseaux sociaux comme levier de mobilisation, notamment auprès des jeunes générations. Sur le plan politique, il existe des partis politiques comme PACMA (Espagne) et PAN (Portugal) qui portent l'idée du respect de l'animal dans la législation espagnole et portugaise. Ils ont un impact qui s'agrandit grâce à leur électorat croissant dans les zones urbaines, PACMA ayant par exemple obtenu plus de 300 000 voix aux élections législatives espagnoles de 2019. Ils déposent des projets de lois comme l'interdiction de l'accès aux mineurs au spectacle de tauromachie ou la suspension des finances publiques accordées à ces derniers. Le résultat législatif le plus récent et le plus significatif de ce camp reste l'interdiction de la corrida votée au Portugal en 2023, portée notamment par PAN, hors Açores.
   </div>
 
   <div class="map-text-block">
-    <p style="color:var(--grey); line-height:1.8;">
-      <strong style="color:var(--white); display:block; margin-bottom:0.5rem;">III/ Liens et collaborations entre les acteurs</strong>
-      En 2013, lorsque l'Espagne a adopté la loi 18/2013 déclarant la tauromachie "Patrimoine Culturel", la FTL a créé un précédent majeur que l'ONCT a immédiatement analysé pour le transposer au contexte français. Cette collaboration s'illustre par la création de l'International Council of Bullfighting, une structure miroir qui permet d'harmoniser les arguments : si un tribunal européen valide un aspect de la corrida en Espagne (comme la liberté d'accès à la culture), 
-      l'ONCT s'empresse d'utiliser cette jurisprudence pour influencer les parlementaires français. Ils fonctionnent comme un laboratoire d'idées où l'on forge des concepts tels que "l'écologie du taureau de combat" ou "le droit à la différence culturelle", créant ainsi un front uni face aux tentatives d'interdiction nationales. 
-      Le CAS International, installé aux Pays-Bas, joue un rôle à part : plutôt que de courir après les projecteurs, il fonctionne comme la "banque centrale" du mouvement anti-corrida. Ce financement est très important pour des organisations avec des budgets plus restreints, comme l'Alliance Anticorrida en France ou AnimaNaturalis en Espagne et au Mexique. 
-      Concrètement, le CAS soutient financièrement des enquêtes sur le terrain, l’achat d’espaces publicitaires ainsi que l’achat de matériel de campagne. Mais son apport va au-delà des fonds : il met aussi son expertise au service des associations locales, en les aidant à structurer leurs pétitions pour qu'elles soient conformes aux standards internationaux. Grâce à ce soutien, les petites associations locales peuvent se permettre de lancer des campagnes coordonnées dans plusieurs pays à la fois. 
-      La collaboration entre PETA et AnimaNaturalis est une réussite en termes de mise en avant de l’idéologie anti-corrida au grand public. PETA est connu pour sa création d’évènements qui ont pour but de choquer, par exemple avec des militants nus, couverts de faux sang (représentant la mort d’un taureau de combat lors d’une corrida). Mais réaliser ces idées de mise en scène, il faut des ressources humaines, c’est là qu’AnimaNaturalis vient gérer le recrutement local de volontaires. 
-      Cette collaboration permet de transformer l’image de tradition de la Corrida en une image qui répugne, dégoute et qui est donc rejetée par l’opinion publique.
-    </p>
+    <strong>III / Liens et collaborations entre les acteurs</strong>
+    En 2013, lorsque l'Espagne a adopté la loi 18/2013 déclarant la tauromachie "Patrimoine Culturel", la FTL a créé un précédent majeur que l'ONCT a immédiatement analysé pour le transposer au contexte français. Cette collaboration s'illustre par la création de l'International Council of Bullfighting, une structure miroir qui permet d'harmoniser les arguments. Ils fonctionnent comme un laboratoire d'idées où l'on forge des concepts tels que "l'écologie du taureau de combat" ou "le droit à la différence culturelle", créant ainsi un front uni face aux tentatives d'interdiction nationales. Le CAS International, installé aux Pays-Bas, joue un rôle à part : plutôt que de courir après les projecteurs, il fonctionne comme la "banque centrale" du mouvement anti-corrida. Ce financement est très important pour des organisations avec des budgets plus restreints, comme l'Alliance Anticorrida en France ou AnimaNaturalis en Espagne et au Mexique. Concrètement, le CAS soutient financièrement des enquêtes sur le terrain, l'achat d'espaces publicitaires ainsi que l'achat de matériel de campagne. Grâce à ce soutien, les petites associations locales peuvent se permettre de lancer des campagnes coordonnées dans plusieurs pays à la fois. La collaboration entre PETA et AnimaNaturalis est une réussite en termes de mise en avant de l'idéologie anti-corrida au grand public, transformant l'image de tradition de la Corrida en une image qui est rejetée par l'opinion publique.
   </div>
 </section>
 <div class="section-sep"></div>
@@ -737,42 +823,32 @@
 <section id="arguments-pour">
   <p class="section-label">05 — Défenseurs</p>
   <h2 class="section-title">Arguments <span class="red">Pour</span> la Corrida</h2>
-
   <div class="args-grid">
-    <!-- Éthique / Liberté culturelle -->
     <div class="arg-card">
-      <span class="arg-type-badge">Éthique & Culture</span>
+      <span class="arg-type-badge">Éthique &amp; Culture</span>
       <div class="arg-quote">La tauromachie n'est pas un sport, c'est un art, et comme tout art, elle est l'expression d'une liberté que la République a le devoir de protéger au nom de la diversité culturelle.</div>
       <div class="arg-meta"><span class="arg-author">André Viard</span> — Président de l'ONCT</div>
     </div>
-
     <div class="arg-card">
-      <span class="arg-type-badge">Éthique & Identité</span>
+      <span class="arg-type-badge">Éthique &amp; Identité</span>
       <div class="arg-quote">La corrida est le seul spectacle qui ne ment pas sur la mort. En Espagne, la protéger, c'est protéger la liberté d'expression de tout un peuple face à la pensée unique.</div>
       <div class="arg-meta"><span class="arg-author">Victorino Martin</span> — Fundacion de Lidia</div>
     </div>
-
     <div class="arg-card">
       <span class="arg-type-badge">Culture locale</span>
       <div class="arg-quote">Le droit à la fête et à la culture taurine est un élément constitutif de l'identité des territoires du Sud. C'est une liberté locale qui ne peut être confisquée par une loi nationale.</div>
       <div class="arg-meta"><span class="arg-author">Charte des villes taurines</span> — UVTF</div>
     </div>
-
-    <!-- Économique -->
     <div class="arg-card">
       <span class="arg-type-badge">Économie</span>
       <div class="arg-quote">La tauromachie est une industrie culturelle majeure. Nous ne demandons pas de subventions, nous demandons le respect d'un secteur qui remplit les hôtels et fait vivre des milliers de familles.</div>
       <div class="arg-meta"><span class="arg-author">Simon Casas</span> — ANOET</div>
     </div>
-
-    <!-- Écologique -->
     <div class="arg-card">
       <span class="arg-type-badge">Écologie</span>
       <div class="arg-quote">Si la corrida disparaît, le taureau de combat — cette race unique — disparaîtra avec elle, et avec lui des milliers d'hectares de zones humides et de pâturages sauvages seront livrés au béton.</div>
       <div class="arg-meta"><span class="arg-author">Association des Éleveurs</span></div>
     </div>
-
-    <!-- Culturel Portugal -->
     <div class="arg-card">
       <span class="arg-type-badge">Culture / Art équestre</span>
       <div class="arg-quote">Au Portugal, la corrida est un art de la cavalerie. C'est la célébration du courage de l'homme face à la force brute, dans le respect de l'animal dont la mise à mort n'est pas publique ici.</div>
@@ -786,39 +862,31 @@
 <section id="arguments-contre">
   <p class="section-label">06 — Opposants</p>
   <h2 class="section-title">Arguments <span class="red">Contre</span> la Corrida</h2>
-
   <div class="args-grid">
-    <!-- Éthique -->
     <div class="arg-card">
       <span class="arg-type-badge">Éthique</span>
-      <div class="arg-quotedeux"><b>La définition de la tauromachie par l'UNESCO en 1980, donne ceci :</b><br>  
-                            <span style="color:red;">"</span>La tauromachie est l'art scélérat et vénal de torturer et de mettre à mort des animaux selon des règles, dans la légalité et en public. <br>Elle traumatise les enfants et les adultes sensibles. 
-                            Elle aggrave l'état des psychopathes attirés par ce genre de spectacles. Elle dénature la relation entre l'homme et l'animal. Ce type de spectacles est contre la morale, la science et la culture.</div>
+      <div class="arg-quotedeux"><b>La définition de la tauromachie par l'UNESCO en 1980 :</b><br>
+        <span style="color:var(--red);">"</span>La tauromachie est l'art scélérat et vénal de torturer et de mettre à mort des animaux selon des règles, dans la légalité et en public. Elle traumatise les enfants et les adultes sensibles. Elle aggrave l'état des psychopathes attirés par ce genre de spectacles. Elle dénature la relation entre l'homme et l'animal. Ce type de spectacles est contre la morale, la science et la culture.
+      </div>
       <div class="arg-meta"><span class="arg-author">UNESCO</span> — 1980</div>
     </div>
-
     <div class="arg-card">
       <span class="arg-type-badge">Éthique</span>
       <div class="arg-quote">La tradition s'arrête là où la cruauté commence. Torturer un animal pour le divertissement est une tache sur l'honneur de l'Europe du XXIe siècle.</div>
       <div class="arg-meta"><span class="arg-author">Marius Kolff</span> — CAS International</div>
     </div>
-
     <div class="arg-card">
       <span class="arg-type-badge">Éthique</span>
       <div class="arg-quote">La corrida est une boucherie à ciel ouvert, une agonie lente et cruelle pour le seul plaisir de quelques personnes. C'est une honte pour la France.</div>
       <div class="arg-meta"><span class="arg-author">Brigitte Bardot</span> — Fondatrice de la FBB</div>
     </div>
-
-    <!-- Économique / Financement public -->
     <div class="arg-card">
-      <span class="arg-type-badge">Économie & Droits</span>
+      <span class="arg-type-badge">Économie &amp; Droits</span>
       <div class="arg-quote">Il est inacceptable que l'argent du contribuable européen, via la PAC, continue de soutenir indirectement une pratique qui contrevient aux principes de bien-être animal de l'Union.</div>
       <div class="arg-meta"><span class="arg-author">Reinke Hameleers</span> — Eurogroup for Animals</div>
     </div>
-
-    <!-- Culturel / Violence -->
     <div class="arg-card">
-      <span class="arg-type-badge">Culture & Violence</span>
+      <span class="arg-type-badge">Culture &amp; Violence</span>
       <div class="arg-quote">La violence ne peut pas être un patrimoine culturel. Nous défendons une société où le divertissement ne dépend pas de la souffrance d'un être sensible.</div>
       <div class="arg-meta"><span class="arg-author">PAN</span> — Partido Pessoas-Animais-Natureza (Portugal)</div>
     </div>
@@ -830,36 +898,22 @@
 <section id="temoignages">
   <p class="section-label">07 — Paroles</p>
   <h2 class="section-title">Témoignages</h2>
-
-  <div class="testimonials-grid" id="testimonials-container">
+  <div class="testimonials-grid">
     <div class="testimonial-card">
-      <div class="temoin">Je vais te raconter mon ressenti. Je ne me place donc pas sur un plan moral, je ne défends pas une cause ou une autre, je vais simplement te raconter mes émotions et réflexions au cours de cette corrida. C'est horrible, j'en avais la nausée. En l'écrivant aujourd'hui, j'en ai encore la nausée. Le pire c'est cette façon de donner la mort : elle semble douloureuse, aléatoire, barbare. Je pensais sans arrêt : la mort est une chose trop sérieuse, trop grave pour la pratiquer de cette manière.</div>
-      <div class="testimonial-author" style="display:flex; gap:1rem; align-items:center; margin-top:0.8rem;">
-        <div class="testimonial-author"> Spectateur anonyme (Contre la corrida)</div>
-      </div>
+      <div class="temoin">Je vais te raconter mon ressenti. Je ne me place donc pas sur un plan moral, je ne défends pas une cause ou une autre, je vais simplement te raconter mes émotions et réflexions au cours de cette corrida. C'est horrible, j'en avais la nausée. En l'écrivant aujourd'hui, j'en ai encore la nausée. Le pire c'est cette façon de donner la mort : elle semble douloureuse, aléatoire, barbare. Je pensais sans arrêt : la mort est une chose trop sérieuse, trop grave pour la pratiquer de cette manière.</div>
+      <div class="testimonial-author">Spectateur anonyme — Contre la corrida</div>
     </div>
     <div class="testimonial-card">
-      <div class="temoin">J'habite à Nîmes et j'ai assisté à une corrida, du moins au dernier taureau, quand j'avais 17 ans ; je voulais tout simplement me rendre compte par moi-même que ce qu'était réellement la corrida; je précise que n'ai eu aucun mal a rentré dans les arènes. J'étais seule. Je peux vous dire que très vite je n'ai pas compris pourquoi les gens se ruaient pour aller voir ça. Cela m'a avant tout inspiré beaucoup de pitié quand j'ai vu l'animal commençant à fléchir sur ces pattes, la gueule ouverte, 
-        je me souviens qu'il ne cessait de prendre appui sur les parois, et puis ce qui m'a choqué c'est le silence qui régnait autour de cette bête à bout de force et tous ces gens qui regardaient... je vous avouerais que je n'ai pas eu le courage d'attendre la fin, c'est à dire la mise à mort, ce spectacle était déjà bien pitoyable dans mes yeux de 17 ans; en tout cas j'ai le souvenir d'avoir vu rentrer dans l'arène un animal magnifique qui en l'espace de 10mn est devenu littéralement une loque pissant son sang. 
-        J'ai trouvé ce spectacle ignoble. Je n'ai pas compris pourquoi des gens prenaient plaisir à regarder ça et ne le comprend toujours pas d'ailleurs. 
-        Je pense que c'est un devoir qu'une loi soit votée pour interdire les enfants à ce genre de spectacle; tout simplement car un large public est mal informé, la preuve, dans les médias, on ne montre que l'aspect présentable avec couleurs, fanfares..., en l'occurrence les passes avec la cape; le reste est complètement mis de côté: les coups de piques puis surtout la mise à mort qui dépend seulement du savoir-faire du matador, si celui-ci est mauvais (ce qui ne manque pas à l'appel!) la fin du "spectacle" est un véritable carnage, 
-        coup d'épée (desbello) à répétition sans parlé des coups de poignard (puntilla) lacérant le cerveau de manière répétée également, de l'acharnement pur et simple, c'est l'horreur absolue. C'est pourquoi nous ne pouvons prendre le risque de laisser des enfants assister à ça.
-        Mon point de vue : la mise à mort d'un être que l'on donne en spectacle va à l'encontre du respect de la vie.</div>
-      <div class="testimonial-author" style="display:flex; gap:1rem; align-items:center; margin-top:0.8rem;">
-        <div class="testimonial-author"> Spectateur anonyme (Contre la corrida)</div>
-      </div>
+      <div class="temoin">J'habite à Nîmes et j'ai assisté à une corrida, du moins au dernier taureau, quand j'avais 17 ans ; je voulais tout simplement me rendre compte par moi-même de ce qu'était réellement la corrida ; je précise que je n'ai eu aucun mal à rentrer dans les arènes. J'étais seule. Je peux vous dire que très vite je n'ai pas compris pourquoi les gens se ruaient pour aller voir ça. Cela m'a avant tout inspiré beaucoup de pitié quand j'ai vu l'animal commençant à fléchir sur ses pattes, la gueule ouverte. Je me souviens qu'il ne cessait de prendre appui sur les parois, et puis ce qui m'a choqué c'est le silence qui régnait autour de cette bête à bout de force et tous ces gens qui regardaient… Je n'ai pas eu le courage d'attendre la fin. J'ai trouvé ce spectacle ignoble. Je pense que c'est un devoir qu'une loi soit votée pour interdire les enfants à ce genre de spectacle.</div>
+      <div class="testimonial-author">Spectatrice anonyme — Contre la corrida</div>
     </div>
     <div class="testimonial-carddeux">
       <div class="temoin">Moi, qui suis aficionado depuis toujours, ce débat m'exaspère. Je n'ai, à vrai dire, qu'un seul argument pour défendre la corrida et il me semble inattaquable : ça me plaît, c'est même le spectacle qui me plaît le plus.</div>
-      <div class="testimonial-author" style="display:flex; gap:1rem; align-items:center; margin-top:0.8rem;">
-        <div class="testimonial-author">Spectateur anonyme (En faveur de la corrida)</div>
-      </div>
+      <div class="testimonial-author">Spectateur anonyme — En faveur de la corrida</div>
     </div>
     <div class="testimonial-carddeux">
-      <div class="temoin">Je témoigne que je n'ai jamais rencontré un seul torero ni un seul aficionado qui prenne du plaisir ou trouve le moindre intérêt au spectacle de la souffrance du toro. [...] Si on applaudit au moment de sa mort, c'est pour saluer son combat et le savoir-faire du torero.</div>
-      <div class="testimonial-author" style="display:flex; gap:1rem; align-items:center; margin-top:0.8rem;">
-        <div class="testimonial-author">Spectateur anonyme (En faveur de la corrida)</div>
-      </div>
+      <div class="temoin">Je témoigne que je n'ai jamais rencontré un seul torero ni un seul aficionado qui prenne du plaisir ou trouve le moindre intérêt au spectacle de la souffrance du toro. Si on applaudit au moment de sa mort, c'est pour saluer son combat et le savoir-faire du torero.</div>
+      <div class="testimonial-author">Spectateur anonyme — En faveur de la corrida</div>
     </div>
   </div>
 </section>
@@ -869,13 +923,11 @@
 <section id="friction">
   <p class="section-label">08 — Analyse</p>
   <h2 class="section-title">Points de Friction</h2>
-  <p style="color:var(--grey); margin-bottom:2.5rem; font-size:0.95rem; max-width:700px;">D'après les sources étudiées, nous constatons que le débat autour de la Corrida se structure autour de plusieurs axes de désaccord profonds.</p>
-
+  <p style="color:var(--grey); margin-bottom:2rem; font-size:0.93rem; max-width:700px;">D'après les sources étudiées, nous constatons que le débat autour de la Corrida se structure autour de plusieurs axes de désaccord profonds.</p>
   <div class="friction-grid">
-    <!-- Souffrance animale -->
     <div class="friction-item">
       <div class="friction-title">La souffrance animale</div>
-      <p style="color:var(--grey); font-size:0.9rem; margin-bottom:1rem;">Le principal point de désaccord concerne la question de la souffrance animale.</p>
+      <p style="color:var(--grey); font-size:0.88rem; margin-bottom:0.8rem;">Le principal point de désaccord concerne la question de la souffrance animale.</p>
       <div class="friction-sides">
         <div class="friction-side">
           <div class="friction-side-label pro-label">Pour — Défenseurs</div>
@@ -887,8 +939,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Tradition & Art -->
     <div class="friction-item">
       <div class="friction-title">Tradition et dimension artistique</div>
       <div class="friction-sides">
@@ -902,8 +952,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Argument écologique -->
     <div class="friction-item">
       <div class="friction-title">L'argument écologique</div>
       <div class="friction-sides">
@@ -917,8 +965,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Exposition des mineurs -->
     <div class="friction-item">
       <div class="friction-title">L'exposition des mineurs</div>
       <div class="friction-sides">
@@ -932,11 +978,9 @@
         </div>
       </div>
     </div>
-
-    <!-- Économique -->
     <div class="friction-item">
       <div class="friction-title">L'enjeu économique et les financements publics</div>
-      <p style="color:var(--grey); font-size:0.9rem; margin-bottom:1rem;">La question du financement public de la Corrida constitue également un point de discorde majeur.</p>
+      <p style="color:var(--grey); font-size:0.88rem; margin-bottom:0.8rem;">La question du financement public de la Corrida constitue également un point de discorde majeur.</p>
       <div class="friction-sides">
         <div class="friction-side">
           <div class="friction-side-label pro-label">Pour — Défenseurs</div>
@@ -944,7 +988,7 @@
         </div>
         <div class="friction-side">
           <div class="friction-side-label con-label">Contre — Opposants</div>
-          Les opposants dénoncent l'utilisation de l'argent public — subventions municipales, aides régionales, fonds européens via la PAC — pour financer un spectacle qu'ils considèrent contraire au bien-être animal. Ils réclament une transparence totale des financements et leur suppression progressive.
+          Les opposants dénoncent l'utilisation de l'argent public — subventions municipales, aides régionales, fonds européens via la PAC — pour financer un spectacle contraire au bien-être animal. Ils réclament une transparence totale des financements et leur suppression progressive.
         </div>
       </div>
     </div>
@@ -953,11 +997,11 @@
 <div class="section-sep"></div>
 
 <!-- ==================== AFFICHE ==================== -->
-<section id="affiche" style="max-width:1400px;">
+<section id="affiche">
   <p class="section-label">09 — Affiche</p>
   <h2 class="section-title">Notre Affiche</h2>
   <div class="affiche-zone">
-    <img src="Images/Affiche.png" alt="Affiche de la controverse" width = 1200/>
+    <img src="Images/Affiche.png" alt="Affiche de la controverse La Corrida" />
   </div>
 </section>
 <div class="section-sep"></div>
@@ -967,37 +1011,34 @@
   <p class="section-label">10 — Encyclopédie</p>
   <h2 class="section-title">Informations Complémentaires</h2>
 
-  <!-- Images -->
   <div class="img-grid">
     <div class="img-item">
       <div class="img-placeholder">
-         <img src="Images/Execution.png" width = 330/>
+        <img src="Images/Execution.png" alt="Exécution d'un taureau à la fin de la Corrida" />
       </div>
       <div class="img-caption">Exécution d'un taureau à la fin de la Corrida</div>
-      <div class="img-src">Source : <a href="https://fr.wikipedia.org/wiki/Verdugo_%28estocade%29" target="_blank" style="color:var(--red); font-size:0.7rem;">wikipedia.org — Verdugo (estocade)</a></div>
+      <div class="img-src">Source : <a href="https://fr.wikipedia.org/wiki/Verdugo_%28estocade%29" target="_blank" style="color:var(--red);">wikipedia.org — Verdugo (estocade)</a></div>
     </div>
     <div class="img-item">
       <div class="img-placeholder">
-        <img src="Images/Picador.png" width = 330/>
+        <img src="Images/Picador.png" alt="Image d'un Picador" />
       </div>
       <div class="img-caption">Image d'un Picador</div>
-      <div class="img-src">Source : <a href="https://www.flickr.com/photos/bernardbost/44902378942" target="_blank" style="color:var(--red); font-size:0.7rem;">flickr.com — Bernard Bost</a></div>
+      <div class="img-src">Source : <a href="https://www.flickr.com/photos/bernardbost/44902378942" target="_blank" style="color:var(--red);">flickr.com — Bernard Bost</a></div>
     </div>
     <div class="img-item">
       <div class="img-placeholder">
-        <img src="Images/Matador.png" width = 330/>
+        <img src="Images/Matador.png" alt="Matador et taureau en pleine Corrida" />
       </div>
       <div class="img-caption">Matador et taureau en pleine Corrida</div>
-      <div class="img-src">Source : <a href="https://www.la-croix.com/France/chiffres-corrida-France-2022-11-16-1201242365" target="_blank" style="color:var(--red); font-size:0.7rem;">la-croix.com</a></div>
+      <div class="img-src">Source : <a href="https://www.la-croix.com/France/chiffres-corrida-France-2022-11-16-1201242365" target="_blank" style="color:var(--red);">la-croix.com</a></div>
     </div>
   </div>
 
-  <!-- Glossaire -->
   <div class="glossary-section">
-    <h3 style="font-size:1.4rem; color:var(--white); margin-bottom:2rem;">Glossaire de la Tauromachie</h3>
-
+    <h3 style="font-size:1.3rem; color:var(--white); margin-bottom:1.8rem;">Glossaire de la Tauromachie</h3>
     <div class="glossary-category">
-      <div class="glossary-cat-title">Les protagonistes</div>
+      <div class="glossary-cat-title">Les Protagonistes</div>
       <div class="glossary-grid">
         <div class="gloss-item"><div class="gloss-term">Matador</div><div class="gloss-def">Protagoniste principal, chargé d'abattre le taureau</div></div>
         <div class="gloss-item"><div class="gloss-term">Cuadrilla</div><div class="gloss-def">L'équipe chargée d'assister le Matador</div></div>
@@ -1007,7 +1048,6 @@
         <div class="gloss-item"><div class="gloss-term">Ganadero</div><div class="gloss-def">L'éleveur de taureaux de combat</div></div>
       </div>
     </div>
-
     <div class="glossary-category">
       <div class="glossary-cat-title">Les Phases du Combat</div>
       <div class="glossary-grid">
@@ -1016,7 +1056,6 @@
         <div class="gloss-item"><div class="gloss-term">Tercio de muerte</div><div class="gloss-def">Le matador travaille avec la muleta puis tue le taureau</div></div>
       </div>
     </div>
-
     <div class="glossary-category">
       <div class="glossary-cat-title">Les Passes et Techniques</div>
       <div class="glossary-grid">
@@ -1030,7 +1069,6 @@
         <div class="gloss-item"><div class="gloss-term">Descabello</div><div class="gloss-def">Coup de grâce porté dans la nuque si le taureau ne tombe pas</div></div>
       </div>
     </div>
-
     <div class="glossary-category">
       <div class="glossary-cat-title">Le Taureau</div>
       <div class="glossary-grid">
@@ -1039,7 +1077,6 @@
         <div class="gloss-item"><div class="gloss-term">Arroba</div><div class="gloss-def">Unité de poids du taureau (≈ 11,5 kg) — un taureau pèse souvent 25–30 arrobas</div></div>
       </div>
     </div>
-
     <div class="glossary-category">
       <div class="glossary-cat-title">L'Arène et le Rituel</div>
       <div class="glossary-grid">
@@ -1060,7 +1097,6 @@
 <section id="sources">
   <p class="section-label">11 — Références</p>
   <h2 class="section-title">Sources</h2>
-
   <div class="sources-list">
     <a class="source-link" href="https://blog.defi-ecologique.com/argumentaire-defenseurs-corrida/" target="_blank">blog.defi-ecologique.com — Argumentaire des défenseurs de la corrida</a>
     <a class="source-link" href="https://www.dw.com/en/bullfighting-ban-in-mexico-city-sparks-celebration-and-controversy/a-71971205" target="_blank">dw.com — Bullfighting ban in Mexico City</a>
@@ -1079,8 +1115,6 @@
     <a class="source-link" href="https://www.francebleu.fr/infos/societe/corrida-ses-defenseurs-appellent-les-elus-enracines-a-les-soutenir-1663321504" target="_blank">francebleu.fr — Les défenseurs appellent les élus</a>
     <a class="source-link" href="https://www.radiofrance.fr/societe/corrida-barbare-ou-sacree-un-debat-vieux-comme-louis-xiv" target="_blank">radiofrance.fr — Corrida barbare ou sacrée ?</a>
   </div>
-
-  <!-- Vidéos -->
   <div class="videos-section">
     <div class="videos-label">Vidéos recommandées</div>
     <p class="videos-text">Voici des vidéos de débat que nous vous conseillons si vous souhaitez approfondir votre réflexion sur cette controverse :</p>
@@ -1098,16 +1132,16 @@
 <section id="qui-sommes-nous">
   <p class="section-label">12 — Équipe</p>
   <h2 class="section-title">Qui Sommes-Nous ?</h2>
-  <p class="about-text">
-    
-    <b>Nous sommes les </b><br> <img src="Images/Blue Suits v3.png" alt="Logo des Blue Suits" width = 300/> <br>
+  <div class="about-text">
+    <b>Nous sommes les</b>
+    <div class="about-logo">
+      <img src="Images/Blue Suits v3.png" alt="Logo des Blue Suits" />
+    </div>
     4 camarades de classe en E1. Nous venons tous de différents lycées et nous nous sommes rencontrés au cours de notre première année du cycle préparatoire à l'ESIEE Paris. Après s'être réparti le travail, avoir passé du temps sur la recherche, la mise en forme et la rédaction, nous sommes fiers de vous présenter notre dossier sur la controverse que nous avons choisie : <em>La Corrida, une tradition à conserver ou une torture barbare ?</em>
-  </p>
-
-  <div class="team-photo-zone">
-    <img src="Images/Photo de groupe.png" alt="Photo des membres des Blue Suits" width = 900/>
   </div>
-
+  <div class="team-photo-zone">
+    <img src="Images/Photo de groupe.png" alt="Photo des membres des Blue Suits, de gauche à droite : NOEL Lucas, ORGAER-REANT Aidann, PENG Sopanha, NGUYEN Melvin" />
+  </div>
   <div class="team-names">
     <div class="team-name">NOEL Lucas</div>
     <div class="team-name">ORGAER-REANT Aidann</div>
@@ -1128,34 +1162,45 @@
 
 <!-- ==================== JS ==================== -->
 <script>
-  // Add testimonial button
-  document.getElementById('add-testimonial').addEventListener('click', function() {
-    const container = document.getElementById('testimonials-container');
-    const card = document.createElement('div');
-    card.className = 'testimonial-card';
-    card.innerHTML = `
-      <textarea placeholder="Collez ou saisissez un témoignage ici..."></textarea>
-      <div class="testimonial-author" style="display:flex; gap:1rem; align-items:center; margin-top:0.8rem;">
-        <input type="text" placeholder="Auteur / Source" style="background:transparent; border:none; border-bottom:1px solid var(--border); outline:none; color:var(--grey); font-size:0.8rem; width:200px; padding:0.2rem 0;" />
-      </div>
-    `;
-    container.appendChild(card);
-    card.querySelector('textarea').focus();
+  // ---- Burger menu ----
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  burger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
-  // Smooth nav highlight on scroll
-  const sections = document.querySelectorAll('section[id], div[id="accueil"]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 80;
-      if (window.pageYOffset >= sectionTop) current = section.getAttribute('id');
-    });
-    navLinks.forEach(link => {
-      link.style.color = link.getAttribute('href') === '#' + current ? 'var(--red)' : '';
-    });
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+    burger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Close menu on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMobile();
   });
+
+  // ---- Nav highlight on scroll ----
+  const allSections = document.querySelectorAll('section[id], div[id="accueil"]');
+  const navLinks    = document.querySelectorAll('.nav-links a');
+  const mobileLinks = document.querySelectorAll('.mobile-menu a');
+
+  function updateNav() {
+    let current = '';
+    allSections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 90) current = s.getAttribute('id');
+    });
+    [...navLinks, ...mobileLinks].forEach(link => {
+      const isActive = link.getAttribute('href') === '#' + current;
+      link.style.color = isActive ? 'var(--red)' : '';
+    });
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
 </script>
 </body>
 </html>
